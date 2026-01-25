@@ -221,7 +221,7 @@
 						target="_blank"
 						href={reviewsData.reviews[currentReview].url}
 						rel="noopener noreferrer"
-						class="text-sm text-primary/60 font-opensans"
+						class="text-sm text-primary/60 font-opensans text-balance text-right"
 					>
 						Reseña verificada en Google Maps
 					</a>

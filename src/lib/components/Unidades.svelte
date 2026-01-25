@@ -279,11 +279,18 @@
         sliderFullscreen = !sliderFullscreen;
         
         if (sliderFullscreen) {
-            // Si entramos a pantalla completa, creamos un estado nuevo en el historial
             history.pushState({ fullscreen: true }, '');
-        } else if (history.state?.fullscreen) {
-            // Si salimos manualmente (click en botón), quitamos ese estado
-            history.back();
+            // BLOQUEA el scroll cuando entra a pantalla completa
+            document.body.style.overflow = 'hidden';
+			// Bloquea el pull-to-refresh y el rebote
+			document.body.style.overscrollBehavior = 'none';
+        } else {
+            if (history.state?.fullscreen) history.back();
+            // REVIERTE el bloqueo al salir. 
+            // Si el modal sigue abierto, lo mantenemos en 'hidden'
+            document.body.style.overflow = modalAbierto ? 'hidden' : 'auto';
+			// Restauramos el comportamiento normal
+			document.body.style.overscrollBehavior = 'auto';
         }
     }
 
@@ -322,15 +329,17 @@
 	onMount(() => {
 		// --- Manejo del botón Atrás ---
 		const handlePopState = (event) => {
-            if (sliderFullscreen) {
-                // Si el usuario da "atrás" y está la foto grande, solo cerramos la foto
-                sliderFullscreen = false;
-            } else if (modalAbierto) {
-                // Si ya no hay foto grande pero el modal sigue abierto, cerramos el modal
-                modalAbierto = null;
-                document.body.style.overflow = 'auto';
-            }
-        };
+        if (sliderFullscreen) {
+            sliderFullscreen = false;
+            // Si el modal sigue atrás, mantenemos el scroll bloqueado
+            document.body.style.overflow = modalAbierto ? 'hidden' : 'auto';
+			document.body.style.overscrollBehavior = 'auto'; // Limpiar aquí
+        } else if (modalAbierto) {
+            modalAbierto = null;
+            document.body.style.overflow = 'auto'; // Liberamos el scroll total
+			document.body.style.overscrollBehavior = 'auto'; // Y aquí
+        }
+    };
 
 		window.addEventListener('popstate', handlePopState);
 
@@ -423,7 +432,7 @@
 			>
 			<div
 				bind:this={modalRef}
-				class="overflow-y-auto scrollbar-thick scrollbar-thumb-accent scrollbar-track-secondary/20 bg-background md:max-w-2xl w-full h-full max-h-full sm:max-h-[90vh] md:max-h-[95vh] overflow-x-hidden scroll-smooth z-30"
+				class="overflow-y-auto scrollbar-thick scrollbar-thumb-accent scrollbar-track-secondary/20 bg-background md:max-w-2xl w-full h-full max-h-full sm:max-h-[90vh] rounded-none md:rounded-lg md:max-h-[95vh] overflow-x-hidden scroll-smooth z-30"
 			>
 				<div
 					class="flex justify-between items-center p-5 md:p-7 border-b border-gray-200 sticky top-0 bg-background z-20"
@@ -509,7 +518,7 @@
 						{#each unidadActual.galeria as foto, idx (idx)}
 							<button
 								onclick={() => (fotoActual = idx)}
-								class={`${idx === 0 ? 'ml-4' : ''} w-14 h-14 md:w-16 md:h-16 rounded overflow-hidden border-2 transition-colors flex-shrink-0 ${
+								class={`${idx === 0 ? 'ml-4' : ''} w-14 h-14 md:w-16 md:h-16 rounded-lg overflow-hidden border-2 transition-colors flex-shrink-0 ${
 									fotoActual === idx ? 'border-accent' : 'border-gray-300 hover:border-gray-400'
 								}
 									${idx === unidadActual.galeria.length - 1 ? 'mr-4' : ''}
@@ -519,7 +528,7 @@
 							</button>
 						{/each}
 					</div>
-					<div class="flex flex-col p-3 gap-8">
+					<div class="flex flex-col px-4 sm:px-6 gap-8 pb-4 sm:pb-8">
 						<div class="bg-background p-2 rounded-lg border-l-4 border-accent">
 							<p class="text-gray-700 text-lg italic">
 								"{unidadActual.descripcion}"
@@ -569,7 +578,7 @@
 
 						<div class="flex flex-col gap-3">
 							<button
-								onclick={() => irAlFormulario}
+								onclick={irAlFormulario}
 								class="w-full bg-accent hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
 							>
 								Consultar por esta unidad
@@ -609,7 +618,7 @@
 	{/if}
 
 	{#if sliderFullscreen && unidadActual}
-		<div class="fixed w-full h-full inset-0 bg-black z-[100] flex items-center justify-center">
+		<div class="fixed h-screen w-screen touch-none inset-0 bg-black z-[100] flex items-center justify-center overflow-y-hidden">
 			<button
 				onclick={toggleSliderFullscreen}
 				class="absolute top-4 right-4 text-white hover:text-gray-300 z-[101]"

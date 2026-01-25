@@ -33,7 +33,7 @@
     style="background-image: url({heroData.backgroundImage})"
   >
     <!-- Overlay con tonos tierra y verde -->
-    <div class="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/50 to-primary/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary/30 via-primary/70 to-primary/0 sm:from-primary/50 sm:via-primary/30 sm:to-transparent sm:backdrop-blur-[2px]"></div>
   </div>
 
   <!-- Contenido Centralizado -->
@@ -41,7 +41,7 @@
     <div class="max-w-3xl text-center space-y-5 flex flex-col h-full items-center justify-center">
       
       <!-- Nombre de la Marca -->
-      <div class="inline-block px-5 py-2 bg-accent/90 backdrop-blur-sm rounded-full mb-2">
+      <div class="inline-block px-5 py-2 bg-primary/90 backdrop-blur-sm rounded-full mb-2">
         <p class="text-white font-semibold tracking-wide text-sm md:text-base">
           {heroData.brandName}
         </p>
@@ -53,12 +53,12 @@
       </h1>
 
       <!-- Subtítulo -->
-      <h3 class="text-secondary drop-shadow-md">
+      <h3 class="text-slate-200 drop-shadow-md">
         {heroData.subtitle}
       </h3>
 
       <!-- Descripción -->
-      <p class="text-white/90 max-w-2xl mx-auto">
+      <p class="text-background font-opensans max-w-2xl mx-auto">
         {heroData.description}
       </p>
 
