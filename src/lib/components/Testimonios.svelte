@@ -1,4 +1,7 @@
 <script>
+  import { onMount } from 'svelte';
+  import { animate } from 'motion';
+
   // 🎯 DATOS CONFIGURABLES
   const reviewsData = {
     title: "Lo que dicen nuestros huéspedes",
@@ -40,6 +43,9 @@
   };
 
   let currentReview = 0;
+  let touchStartX = 0;
+  let sliderRef;
+  let cardRef;
 
   function nextReview() {
     currentReview = (currentReview + 1) % reviewsData.reviews.length;
@@ -48,6 +54,43 @@
   function prevReview() {
     currentReview = (currentReview - 1 + reviewsData.reviews.length) % reviewsData.reviews.length;
   }
+
+  function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextReview();
+      } else {
+        prevReview();
+      }
+    }
+  }
+
+  function animateCard() {
+    if (cardRef) {
+      animate(cardRef, { opacity: [0, 1] }, { duration: 0.5 });
+    }
+  }
+
+  onMount(() => {
+    if (sliderRef) {
+      sliderRef.addEventListener('touchstart', handleTouchStart);
+      sliderRef.addEventListener('touchend', handleTouchEnd);
+
+      return () => {
+        sliderRef.removeEventListener('touchstart', handleTouchStart);
+        sliderRef.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  });
+
+  $: currentReview, animateCard();
 </script>
 
 <section id="testimonios" class="w-full bg-white py-section-mobile md:py-section-desktop">
@@ -97,11 +140,10 @@
     </div>
 
     <!-- Slider de Testimonios -->
-    <div class="relative max-w-4xl mx-auto">
+    <div class="relative max-w-4xl mx-auto" bind:this={sliderRef}>
       
       <!-- Card del Testimonio -->
-      <div class="bg-background rounded-2xl p-8 shadow-sm border-2 border-secondary/20 min-h-[280px] flex flex-col justify-between">
-        
+      <div bind:this={cardRef} class="bg-background rounded-2xl p-8 shadow-sm border-2 border-secondary/20 min-h-[280px] flex flex-col justify-between">
         <!-- Estrellas -->
         <div class="flex gap-1 mb-4">
           {#each Array(reviewsData.reviews[currentReview].stars) as _, i}

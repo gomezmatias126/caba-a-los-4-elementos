@@ -29,7 +29,7 @@
 <section class="relative h-screen min-h-[600px] w-full overflow-hidden">
   <!-- Background Image -->
   <div 
-    class="absolute inset-0 bg-cover bg-center"
+    class="absolute inset-0 bg-cover bg-right sm:bg-left"
     style="background-image: url({heroData.backgroundImage})"
   >
     <!-- Overlay con tonos tierra y verde -->
