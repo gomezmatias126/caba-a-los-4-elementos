@@ -12,10 +12,10 @@
 	<title>Cabañas Los 4 Elementos | Santa Rosa de Calamuchita</title>
 </svelte:head>
 
-<!-- <Hero />
+<Hero />
 <FiltroEtico />
 <Unidades />
 <GuiaExplorador />
 <PoliticasEstancia />
-<Formulario /> -->
 <Testimonios />
+<Formulario />
