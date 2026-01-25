@@ -238,7 +238,7 @@
   $: indiceActual = unidades.findIndex(u => u.id === modalAbierto);
 </script>
 
-<section bind:this={seccionRef} class="py-20 px-4 bg-white">
+<section id="unidades" bind:this={seccionRef} class="py-20 px-4 bg-white">
   <div class="max-w-6xl mx-auto">
     <div class="header-section text-center mb-12">
       <h2 class="text-5xl font-bold text-primary mb-3">

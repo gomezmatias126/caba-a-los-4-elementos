@@ -7,7 +7,7 @@
     description: "Cambiá el encierro por la brisa serrana. Una base estratégica en Villa Santarelli para quienes buscan el silencio del río y la cercanía de todo, sin vueltas.", 
     backgroundImage: "/bg/hero.jpeg",
     buttons: {
-      primary: { text: "Explorar Unidades", action: "#alojamientos" }, // "Explorar" invita más a la curiosidad
+      primary: { text: "Explorar Unidades", action: "#unidades" }, // "Explorar" invita más a la curiosidad
       secondary: { text: "Reservar mi lugar", action: "#contacto" } // CTA más directo a la conversión
     }
 };

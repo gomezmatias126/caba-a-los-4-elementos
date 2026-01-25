@@ -20,7 +20,7 @@
         description: "Supermercados, panaderías y carnicerías a la vuelta de la esquina. Ideal si venís en micro o no querés tocar el auto."
       }
     ],
-    mapEmbed: "https://www.google.com/maps/place/Caba%C3%B1as+Los+4+Elementos/@-32.0694183,-64.5381832,17z/data=!4m8!3m7!1s0x95d2bb442697cc15:0xe202d3474cdc256a!8m2!3d-32.0694183!4d-64.5381832!9m1!1b1!16s%2Fg%2F11f0160b7j?entry=ttu8",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3380.991749229103!2d-64.5432772!3d-32.0694719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2bb442697cc15%3A0x9e02d3474cdc256a!2sCaba%C3%B1as%20Los%204%20Elementos!5e0!3m2!1ses-419!2sar!4v1769357833374!5m2!1ses-419!2sar0",
     mapsUrl: "https://maps.app.goo.gl/oTXC3oDSNeiBHevy5",
     image: "fotos//general/centro.jpeg"
   };
