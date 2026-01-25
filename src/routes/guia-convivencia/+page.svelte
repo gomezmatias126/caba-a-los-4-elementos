@@ -58,9 +58,20 @@
   };
 </script>
 
-<section id="convivencia" class="w-full bg-white py-section-mobile md:py-section-desktop">
-  <div class="max-w-layout mx-auto px-4 md:px-8">
-    
+<section id="convivencia" class="relative w-full bg-white py-section-mobile md:py-section-desktop">
+  <div class="absolute top-0 right-0 text-center">
+    <a
+      href="/"
+      target="_parent"
+      class="inline-flex items-center gap-3 py-2 px-2 font-semibold transition-all duration-300 hover:scale-105 text-slate-300 rounded-2xl hover:shadow-lg font-montserrat"
+    >
+    Volver a Inicio
+      <svg class="w-6 h-6 bg-primary p-1 rounded-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+    </a>
+  </div>
+  <div class="relative max-w-layout mx-auto px-4 md:px-8">
     <!-- Título y Subtítulo -->
     <div class="text-center mb-8">
       <h2 class="text-3xl md:text-4xl font-semibold text-primary mb-2 font-montserrat">
@@ -90,7 +101,7 @@
           </div>
 
           <!-- Lista de Items -->
-          <ul class="space-y-3 ml-14">
+          <ul class="space-y-3">
             {#each section.items as item}
               <li class="text-lg leading-relaxed text-primary/80 font-opensans">
                 <span class="inline-block w-2 h-2 bg-accent rounded-full mr-3"></span>
