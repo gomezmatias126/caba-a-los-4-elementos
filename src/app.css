@@ -1,0 +1,45 @@
+/* src/app.css */
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/600.css";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@layer components {
+  /* Contenedor centralizado según tu spec */
+  .container-custom {
+    @apply max-w-layout mx-auto px-4 md:px-8;
+  }
+
+  /* Espaciado de secciones según tu spec */
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  /* Grid estándar de tu spec */
+  .grid-standard {
+    @apply grid gap-8;
+  }
+
+  /* Botón según tu UI Kit */
+  .btn-primary {
+    @apply px-6 py-3 font-semibold transition-all duration-300 hover:scale-105 bg-primary text-background rounded-2xl shadow-sm;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background font-opensans text-lg text-primary leading-relaxed;
+  }
+  h1 { @apply font-montserrat text-3xl md:text-6xl font-bold tracking-tight; }
+  h2 { @apply font-montserrat text-2xl md:text-4xl font-semibold; }
+  h3 { @apply font-montserrat text-xl md:text-2xl font-medium; }
+  p { @apply font-opensans text-sm sm:text-base md:text-lg font-normal; }
+}
