@@ -19,11 +19,11 @@
 	let sliderRef = $state(); // Referencia al div contenedor
 
 	function handleMouseDown(e) {
-        if (!sliderRef) return; // Protección
-        isDown = true;
-        startX = e.pageX - sliderRef.offsetLeft;
-        scrollLeft = sliderRef.scrollLeft;
-    }
+		if (!sliderRef) return; // Protección
+		isDown = true;
+		startX = e.pageX - sliderRef.offsetLeft;
+		scrollLeft = sliderRef.scrollLeft;
+	}
 
 	function handleMouseLeave() {
 		isDown = false;
@@ -34,12 +34,12 @@
 	}
 
 	function handleMouseMove(e) {
-        if (!isDown || !sliderRef) return; // Protección
-        e.preventDefault();
-        const x = e.pageX - sliderRef.offsetLeft;
-        const walk = (x - startX) * 2;
-        sliderRef.scrollLeft = scrollLeft - walk;
-    }
+		if (!isDown || !sliderRef) return; // Protección
+		e.preventDefault();
+		const x = e.pageX - sliderRef.offsetLeft;
+		const walk = (x - startX) * 2;
+		sliderRef.scrollLeft = scrollLeft - walk;
+	}
 
 	const unidades = [
 		{
@@ -228,16 +228,26 @@
 	let indiceActual = $derived(unidades.findIndex((u) => u.id === modalAbierto));
 
 	// --- FUNCIONES ---
-	function cerrarModal() {
-		modalAbierto = null;
-		document.body.style.overflow = 'auto';
-	}
-
 	function abrirModal(id) {
-		modalAbierto = id;
-		fotoActual = 0;
-		document.body.style.overflow = 'hidden';
-	}
+        modalAbierto = id;
+        fotoActual = 0;
+        document.body.style.overflow = 'hidden';
+        
+        // Empujamos un estado al historial para interceptar el botón "Atrás"
+        history.pushState({ modalOpen: true }, '');
+    }
+
+    function cerrarModal() {
+        if (!modalAbierto) return; // Evita bucles si ya está cerrado
+        modalAbierto = null;
+        document.body.style.overflow = 'auto';
+        
+        // Si el usuario cerró el modal manualmente (X o click fuera),
+        // quitamos el estado del historial para que el "Atrás" no lo saque de la web después
+        if (history.state?.modalOpen) {
+            history.back();
+        }
+    }
 
 	function siguienteUnidad() {
 		if (indiceActual < unidades.length - 1) {
@@ -266,8 +276,16 @@
 	}
 
 	function toggleSliderFullscreen() {
-		sliderFullscreen = !sliderFullscreen;
-	}
+        sliderFullscreen = !sliderFullscreen;
+        
+        if (sliderFullscreen) {
+            // Si entramos a pantalla completa, creamos un estado nuevo en el historial
+            history.pushState({ fullscreen: true }, '');
+        } else if (history.state?.fullscreen) {
+            // Si salimos manualmente (click en botón), quitamos ese estado
+            history.back();
+        }
+    }
 
 	function handleTouchStart(e) {
 		touchStartX = e.touches[0].clientX;
@@ -302,6 +320,20 @@
 	}
 
 	onMount(() => {
+		// --- Manejo del botón Atrás ---
+		const handlePopState = (event) => {
+            if (sliderFullscreen) {
+                // Si el usuario da "atrás" y está la foto grande, solo cerramos la foto
+                sliderFullscreen = false;
+            } else if (modalAbierto) {
+                // Si ya no hay foto grande pero el modal sigue abierto, cerramos el modal
+                modalAbierto = null;
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+		window.addEventListener('popstate', handlePopState);
+
 		if (seccionRef) {
 			const header = seccionRef.querySelector('.header-section');
 			if (header) animate(header, { opacity: [0, 1], y: [20, 0] }, { duration: 0.8 });
@@ -319,6 +351,10 @@
 			const cards = cardsRef.querySelectorAll('.card-unit');
 			animate(cards, { opacity: [0, 1], y: [30, 0] }, { duration: 0.6, delay: stagger(0.1) });
 		}
+
+		return () => {
+			window.removeEventListener('popstate', handlePopState);
+		};
 	});
 </script>
 
@@ -346,7 +382,7 @@
 		<div bind:this={cardsRef} class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 			{#each unidades as unidad (unidad.id)}
 				<div
-					class="card-unit min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+					class="card-unit aspect-[9/12] w-full h-auto min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
 				>
 					<div class="relative z-10 w-full h-full object-cover overflow-hidden bg-gray-200">
 						<img
@@ -357,9 +393,9 @@
 					</div>
 
 					<div
-						class="absolute bg-gradient-to-tr from-black to-transparent top-0 left-0 z-30 p-4 h-full w-full flex flex-col justify-end"
+						class="absolute bg-gradient-to-tr from-black via-transparent to-transparent top-0 left-0 z-30 p-4 h-full w-full flex flex-col justify-end items-start"
 					>
-						<h3 class="text-xl font-bold text-background mb-2">
+						<h3 class="text-xl font-bold text-background mb-2 text-balance">
 							{unidad.nombre}
 						</h3>
 						<p class="text-sm text-background mb-4">
@@ -367,7 +403,7 @@
 						</p>
 						<button
 							onclick={() => abrirModal(unidad.id)}
-							class="w-full rounded-xl bg-accent hover:bg-orange-700 text-white font-semibold py-2 px-3 transition-colors flex items-center justify-center gap-1 text-sm"
+							class="w-full rounded-xl bg-accent hover:bg-orange-700 text-white font-semibold py-3 px-3 transition-colors flex items-center justify-center gap-1 text-base"
 						>
 							Ver Detalles
 							<svelte:component this={ChevronRight} class="w-4 h-4" />
@@ -380,14 +416,14 @@
 
 	{#if modalAbierto && unidadActual}
 		<div
-			class="fixed w-full h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50"
+			class="fixed w-full h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
 		>
 			<button onclick={cerrarModal} class="bg-black bg-opacity-50 w-full h-full absolute z-10"
 				>Cerrar Modal</button
 			>
 			<div
 				bind:this={modalRef}
-				class="overflow-y-auto scrollbar-thick scrollbar-thumb-accent scrollbar-track-secondary/20 bg-background rounded-lg w-full md:max-w-2xl max-h-[90vh] md:max-h-[95vh] overflow-x-hidden scroll-smooth z-30"
+				class="overflow-y-auto scrollbar-thick scrollbar-thumb-accent scrollbar-track-secondary/20 bg-background md:max-w-2xl w-full h-full max-h-full sm:max-h-[90vh] md:max-h-[95vh] overflow-x-hidden scroll-smooth z-30"
 			>
 				<div
 					class="flex justify-between items-center p-5 md:p-7 border-b border-gray-200 sticky top-0 bg-background z-20"
@@ -399,15 +435,13 @@
 						onclick={cerrarModal}
 						class="text-gray-500 hover:text-gray-700 text-2xl flex-shrink-0 ml-2"
 					>
-						<X class="w-6 h-6" />
+						<X class="w-8 h-8" />
 					</button>
 				</div>
 
-				<div class="p-5 md:p-7 space-y-6">
+				<div class="space-y-6">
 					<!-- Slider de fotos -->
-					<div
-						class="relative h-64 md:h-80 bg-gray-200 rounded-lg overflow-hidden group cursor-pointer"
-					>
+					<div class="relative h-64 md:h-80 bg-gray-200 overflow-hidden group cursor-pointer">
 						<img
 							src={unidadActual.galeria[fotoActual]}
 							alt={`Foto ${fotoActual + 1}`}
@@ -475,94 +509,99 @@
 						{#each unidadActual.galeria as foto, idx (idx)}
 							<button
 								onclick={() => (fotoActual = idx)}
-								class={`w-14 h-14 md:w-16 md:h-16 rounded overflow-hidden border-2 transition-colors flex-shrink-0 ${
+								class={`${idx === 0 ? 'ml-4' : ''} w-14 h-14 md:w-16 md:h-16 rounded overflow-hidden border-2 transition-colors flex-shrink-0 ${
 									fotoActual === idx ? 'border-accent' : 'border-gray-300 hover:border-gray-400'
-								}`}
+								}
+									${idx === unidadActual.galeria.length - 1 ? 'mr-4' : ''}
+								`}
 							>
 								<img src={foto} alt={`Miniatura ${idx + 1}`} class="w-full h-full object-cover" />
 							</button>
 						{/each}
 					</div>
-
-					<div class="bg-background p-5 rounded-lg border-l-4 border-accent">
-						<p class="text-gray-700 text-lg italic">
-							"{unidadActual.descripcion}"
-						</p>
-					</div>
-
-					<div class="space-y-5">
-						<div>
-							<h4 class="text-lg font-bold text-primary mb-2">Capacidad</h4>
-							<p class="text-base text-gray-700">{unidadActual.detalles.capacidad}</p>
-						</div>
-
-						<div>
-							<h4 class="text-lg font-bold text-primary mb-2">Distribución</h4>
-							<p class="text-base text-gray-700">
-								{unidadActual.detalles.distribucion}
+					<div class="flex flex-col p-3 gap-8">
+						<div class="bg-background p-2 rounded-lg border-l-4 border-accent">
+							<p class="text-gray-700 text-lg italic">
+								"{unidadActual.descripcion}"
 							</p>
 						</div>
 
-						<div>
-							<h4 class="text-lg font-bold text-primary mb-3">Equipamiento</h4>
-							<ul class="space-y-3">
-								{#each unidadActual.detalles.equipamiento as item (item)}
-									<li class="flex items-center gap-3">
-										<span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-										<span class="text-base text-gray-700">{item}</span>
-									</li>
-								{/each}
-							</ul>
+						<div class="space-y-5">
+							<div>
+								<h4 class="text-lg font-bold text-primary mb-2">Capacidad</h4>
+								<p class="text-base text-gray-700">{unidadActual.detalles.capacidad}</p>
+							</div>
+
+							<div>
+								<h4 class="text-lg font-bold text-primary mb-2">Distribución</h4>
+								<p class="text-base text-gray-700">
+									{unidadActual.detalles.distribucion}
+								</p>
+							</div>
+
+							<div>
+								<h4 class="text-lg font-bold text-primary mb-3">Equipamiento</h4>
+								<ul class="space-y-3">
+									{#each unidadActual.detalles.equipamiento as item (item)}
+										<li class="flex items-center gap-3">
+											<span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+											<span class="text-base text-gray-700">{item}</span>
+										</li>
+									{/each}
+								</ul>
+							</div>
 						</div>
-					</div>
 
-					<div class="bg-secondary/20 p-5 rounded-lg space-y-3">
-						<h4 class="font-bold text-lg text-gray-800">Especificaciones técnicas</h4>
-						<p class="text-base text-gray-700">
-							<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia (No requiere
-							aire acondicionado)
-						</p>
-						<p class="text-base text-gray-700">
-							<strong>Servicios:</strong> WiFi de alta velocidad, TV por cable
-						</p>
-						<p class="text-base text-gray-700">
-							<strong>Check-out:</strong> Compromiso de entrega limpia (ayudamos a mantener la tarifa
-							baja para vos)
-						</p>
-					</div>
+						<div class="bg-secondary/20 p-4 rounded-lg space-y-3">
+							<h4 class="font-bold text-lg text-gray-800">Especificaciones técnicas</h4>
+							<p class="text-base text-gray-700">
+								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia (No requiere
+								aire acondicionado)
+							</p>
+							<p class="text-base text-gray-700">
+								<strong>Servicios:</strong> WiFi de alta velocidad, TV por cable
+							</p>
+							<p class="text-base text-gray-700">
+								<strong>Check-out:</strong> Compromiso de entrega limpia (ayudamos a mantener la tarifa
+								baja para vos)
+							</p>
+						</div>
 
-					<button
-						onclick={() => irAlFormulario}
-						class="w-full bg-accent hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
-					>
-						Consultar por esta unidad
-					</button>
+						<div class="flex flex-col gap-3">
+							<button
+								onclick={() => irAlFormulario}
+								class="w-full bg-accent hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
+							>
+								Consultar por esta unidad
+							</button>
 
-					<div class="flex gap-3 pt-2">
-						<button
-							onclick={unidadAnterior}
-							disabled={indiceActual === 0}
-							class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold transition-colors text-base ${
-								indiceActual === 0
-									? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-									: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-							}`}
-						>
-							<ChevronLeft class="w-4 h-4" />
-							Anterior Unidad
-						</button>
-						<button
-							onclick={siguienteUnidad}
-							disabled={indiceActual === unidades.length - 1}
-							class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold transition-colors text-base ${
-								indiceActual === unidades.length - 1
-									? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-									: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-							}`}
-						>
-							Siguiente Unidad
-							<ChevronRight class="w-4 h-4" />
-						</button>
+							<div class="flex gap-3">
+								<button
+									onclick={unidadAnterior}
+									disabled={indiceActual === 0}
+									class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-colors text-base ${
+										indiceActual === 0
+											? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+											: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+									}`}
+								>
+									<ChevronLeft class="w-4 h-4" />
+									Anterior Unidad
+								</button>
+								<button
+									onclick={siguienteUnidad}
+									disabled={indiceActual === unidades.length - 1}
+									class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-colors text-base ${
+										indiceActual === unidades.length - 1
+											? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+											: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+									}`}
+								>
+									Siguiente Unidad
+									<ChevronRight class="w-4 h-4" />
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
