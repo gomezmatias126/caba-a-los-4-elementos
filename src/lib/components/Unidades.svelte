@@ -435,7 +435,7 @@
 				class="overflow-y-auto scrollbar-thick scrollbar-thumb-accent scrollbar-track-secondary/20 bg-background md:max-w-2xl w-full h-full max-h-full sm:max-h-[90vh] rounded-none md:rounded-lg md:max-h-[95vh] overflow-x-hidden scroll-smooth z-30"
 			>
 				<div
-					class="flex justify-between items-center p-5 md:p-7 border-b border-gray-200 sticky top-0 bg-background z-20"
+					class="flex z-50 justify-between items-center p-5 md:p-7 border-b border-gray-200 sticky top-0 bg-background"
 				>
 					<h2 class="text-2xl md:text-3xl font-bold text-primary">
 						{unidadActual.nombre}
