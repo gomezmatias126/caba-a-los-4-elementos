@@ -92,7 +92,7 @@ He leído y acepto las Políticas de Estancia.`;
     });
 </script>
 
-<section id="contacto" class="w-full bg-primary py-section-mobile md:py-section-desktop pb-0">
+<section id="contacto" class="w-full bg-primary py-section-mobile md:py-section-desktop !pb-0 sm:!pb-0">
 	<div class="max-w-3xl mx-auto px-4 md:px-8">
 		<div class="w-full flex flex-row justify-center items-center mb-4">
 			<div class="inline-block mx-auto px-5 py-2 bg-accent/90 backdrop-blur-sm rounded-full mb-2">
@@ -269,7 +269,7 @@ He leído y acepto las Políticas de Estancia.`;
 			</button>
 		</form>
 	</div>
-	<div class="w-full flex flex-row justify-center items-center mt-16 pb-2 opacity-60">
+	<div class="w-full flex flex-row justify-center sm:justify-end items-center mt-16 pb-2 px-4 opacity-30 hover:opacity-50 transition-opacity duration-300">
 		<a class="text-sm text-background text-center" href="https://gomezmatias.com.ar" target="_blank" rel="noopener noreferrer">Diseñado por Matias Gomez</a>
 	</div>
 </section>

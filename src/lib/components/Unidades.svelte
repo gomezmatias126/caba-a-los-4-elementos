@@ -382,13 +382,13 @@
 				{#each amenidades as item (item.label)}
 					<div class="flex flex-col items-center">
 						<svelte:component this={item.icon} class="w-6 h-6 text-accent mb-2" />
-						<p class="text-center text-sm text-gray-700">{item.label}</p>
+						<p class="text-center font-medium font-montserrat text-sm text-gray-700">{item.label}</p>
 					</div>
 				{/each}
 			</div>
 		</div>
 
-		<div bind:this={cardsRef} class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div bind:this={cardsRef} class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 			{#each unidades as unidad (unidad.id)}
 				<div
 					class="card-unit aspect-[9/12] w-full h-auto min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
