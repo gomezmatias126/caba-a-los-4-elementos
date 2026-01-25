@@ -1,112 +1,96 @@
 <script>
-	// 🎯 DATOS CONFIGURABLES
-	const contactData = {
-		title: '¿Consultar disponibilidad?',
-		subtitle: 'Completá los datos y Cristian te responderá por WhatsApp a la brevedad',
-		whatsappNumber: '5491140876426',
-		ownerImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200',
-		ownerText: 'Te respondo personalmente',
-		units: [
-			'Cabaña Familiar El Tilo (5 pers)',
-			'Cabaña Familiar El Sauce (5 pers)',
-			'Depto Matrimonial Zen (2 pers)',
-			'Depto Matrimonial Vista (2 pers)',
-			'Estudio Funcional Serrano (2 pers)'
-		],
-		petOptions: ['No traigo mascota', 'Traigo mascota pequeña (sujeto a política)']
-	};
 	import { onMount } from 'svelte';
+	let { unidadSeleccionada = $bindable() } = $props();
+    // 🎯 DATOS CONFIGURABLES (Constantes, no necesitan Runes)
+    const contactData = {
+        title: '¿Consultar disponibilidad?',
+        subtitle: 'Completá los datos y Cristian te responderá por WhatsApp a la brevedad',
+        whatsappNumber: '5491140876426',
+        ownerImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200',
+        ownerText: 'Te respondo personalmente',
+        units: [
+            { id: 1, name: 'Cabaña Familiar El Tilo (5 pers)' },
+            { id: 2, name: 'Cabaña Familiar El Sauce (5 pers)' },
+            { id: 3, name: 'Departamento Matrimonial Zen (2 pers)' },
+            { id: 4, name: 'Departamento Matrimonial Vista (2 pers)' },
+            { id: 5, name: 'Estudio Funcional Serrano (2 pers)' }
+        ],
+        petOptions: ['No traigo mascota', 'Traigo mascota pequeña (sujeto a política)']
+    };
 
-	let formData = {
-		name: '',
-		unit: '',
-		dateFrom: '',
-		dateTo: '',
-		adults: 2,
-		children: 0,
-		pet: 'No traigo',
-		acceptPolicies: false
-	};
+    // --- ESTADO REACTIVO (Runes) ---
+    let formData = $state({
+        name: '',
+        unit: '',
+        dateFrom: '',
+        dateTo: '',
+        adults: 2,
+        children: 0,
+        pet: '',
+        acceptPolicies: false
+    });
 
-	function generateWhatsAppMessage() {
+    // Referencias a los nodos de los inputs
+    let nodeFrom = $state();
+    let nodeTo = $state();
 
-    const message = `¡Hola Cristian!
+    // --- LÓGICA ---
+    function generateWhatsAppMessage() {
+        const message = `¡Hola Cristian!
 Me llamo *${formData.name}* y vi la web. 
-Consulto por: *${formData.unit}*
-Fechas: del ${formData.dateFrom} al ${formData.dateTo}
+Consulto por: ${unidadSeleccionada ? contactData.units.find(u => u.id === unidadSeleccionada).name : 'Error No especificada'}
+Fechas: *del ${formData.dateFrom} al ${formData.dateTo}*
 Huéspedes: ${formData.adults} adultos y ${formData.children} niños
 Mascota: ${formData.pet}
 ---
 He leído y acepto las Políticas de Estancia.`;
 
-    return encodeURIComponent(message);
-  }
+        return encodeURIComponent(message);
+    }
 
-	function handleSubmit(e) {
-		e.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
+		
+        if (!formData.acceptPolicies) {
+            alert('Debes aceptar las Políticas de Estancia para continuar.');
+            return;
+        }
 
-		if (!formData.acceptPolicies) {
-			alert('Debes aceptar las Políticas de Estancia para continuar.');
-			return;
-		}
+        if (!formData.name || !formData.unit || !formData.dateFrom || !formData.dateTo) {
+            alert('Por favor completá todos los campos requeridos.');
+            return;
+        }
 
-		if (!formData.name || !formData.unit || !formData.dateFrom || !formData.dateTo) {
-			alert('Por favor completá todos los campos requeridos.');
-			return;
-		}
+        const whatsappUrl = `https://wa.me/${contactData.whatsappNumber}?text=${generateWhatsAppMessage()}`;
+        window.open(whatsappUrl, '_blank');
+    }
 
-		const whatsappUrl = `https://wa.me/${contactData.whatsappNumber}?text=${generateWhatsAppMessage()}`;
-		window.open(whatsappUrl, '_blank');
-	}
-	let nodeFrom, nodeTo; // Referencias para los inputs
+    onMount(() => {
+        // Inicialización de Flatpickr vinculada al estado de Runes
+        const fpFrom = flatpickr(nodeFrom, {
+            minDate: 'today',
+            altInput: true,
+            altFormat: 'd/m/Y',
+            dateFormat: 'Y-m-d',
+            locale: 'es',
+            onChange: (selectedDates, dateStr) => {
+                formData.dateFrom = dateStr; 
+                fpTo.set('minDate', dateStr);
+            }
+        });
 
-	onMount(() => {
-		// Inicialización de Flatpickr
-		const fpFrom = flatpickr(nodeFrom, {
-			minDate: 'today',
-			altInput: true,
-			altFormat: 'd/m/Y',
-			dateFormat: 'Y-m-d',
-			locale: 'es', // Asegúrate de incluir el idioma si quieres
-			onChange: (selectedDates, dateStr) => {
-				formData.dateFrom = dateStr; // Sincroniza con Svelte
-				fpTo.set('minDate', dateStr);
-			}
-		});
-
-		const fpTo = flatpickr(nodeTo, {
-			minDate: 'today',
-			altInput: true,
-			altFormat: 'd/m/Y',
-			dateFormat: 'Y-m-d',
-			locale: 'es',
-			onChange: (selectedDates, dateStr) => {
-				formData.dateTo = dateStr; // Sincroniza con Svelte
-			}
-		});
-	});
+        const fpTo = flatpickr(nodeTo, {
+            minDate: 'today',
+            altInput: true,
+            altFormat: 'd/m/Y',
+            dateFormat: 'Y-m-d',
+            locale: 'es',
+            onChange: (selectedDates, dateStr) => {
+                formData.dateTo = dateStr;
+            }
+        });
+    });
 </script>
-
-<style>
-  /* 1. Días del mes siguiente (que marcaste en rojo) con color normal */
-  :global(.flatpickr-day.nextMonthDay) {
-    color: #3f3f46 !important; /* El color de tu texto primary */
-    opacity: 1 !important;
-  }
-
-  /* 2. Días anteriores al mínimo (deshabilitados) más grises */
-  :global(.flatpickr-day.flatpickr-disabled, .flatpickr-day.prevMonthDay) {
-    color: #d1d5db !important; /* Un gris claro (Tailwind gray-300) */
-    opacity: 0.5 !important;
-    cursor: not-allowed !important;
-  }
-
-  /* 3. El día seleccionado (para mantener coherencia con tu marca) */
-  :global(.flatpickr-day.selected) {
-    background: #FF8C00 !important; /* Tu color accent */
-    border-color: #FF8C00 !important;
-  }
-</style>
 
 <section id="contacto" class="w-full bg-primary py-section-mobile md:py-section-desktop">
 	<div class="max-w-3xl mx-auto px-4 md:px-8">
@@ -140,7 +124,11 @@ He leído y acepto las Políticas de Estancia.`;
 		</div>
 
 		<!-- Formulario -->
-		<form on:submit={handleSubmit} class="bg-white rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+		<form
+			on:submit={handleSubmit}
+			id="form_contact"
+			class="bg-white rounded-2xl p-6 md:p-8 shadow-sm space-y-6"
+		>
 			<!-- Campo: Nombre -->
 			<div>
 				<label for="name" class="block text-lg font-medium text-primary mb-2 font-montserrat">
@@ -163,13 +151,13 @@ He leído y acepto las Políticas de Estancia.`;
 				</label>
 				<select
 					id="unit"
-					bind:value={formData.unit}
+					bind:value={unidadSeleccionada}
 					required
 					class="w-full px-4 py-3 rounded-2xl border-2 border-secondary/30 focus:border-accent focus:outline-none transition-all duration-300 font-opensans"
 				>
 					<option value="" disabled selected>Seleccioná una opción</option>
 					{#each contactData.units as unit}
-						<option value={unit}>{unit}</option>
+						<option value={unit.id}>{unit.name}</option>
 					{/each}
 				</select>
 			</div>
@@ -240,6 +228,7 @@ He leído y acepto las Políticas de Estancia.`;
 					bind:value={formData.pet}
 					class="w-full px-4 py-3 rounded-2xl border-2 border-secondary/30 focus:border-accent focus:outline-none transition-all duration-300 font-opensans"
 				>
+					<option value="" disabled selected>Selecciona una Opcion</option>
 					{#each contactData.petOptions as option}
 						<option value={option}>{option}</option>
 					{/each}
@@ -287,3 +276,24 @@ He leído y acepto las Políticas de Estancia.`;
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 </svelte:head>
+
+<style>
+	/* 1. Días del mes siguiente (que marcaste en rojo) con color normal */
+	:global(.flatpickr-day.nextMonthDay) {
+		color: #3f3f46 !important; /* El color de tu texto primary */
+		opacity: 1 !important;
+	}
+
+	/* 2. Días anteriores al mínimo (deshabilitados) más grises */
+	:global(.flatpickr-day.flatpickr-disabled, .flatpickr-day.prevMonthDay) {
+		color: #d1d5db !important; /* Un gris claro (Tailwind gray-300) */
+		opacity: 0.5 !important;
+		cursor: not-allowed !important;
+	}
+
+	/* 3. El día seleccionado (para mantener coherencia con tu marca) */
+	:global(.flatpickr-day.selected) {
+		background: #ff8c00 !important; /* Tu color accent */
+		border-color: #ff8c00 !important;
+	}
+</style>

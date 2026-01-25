@@ -6,16 +6,20 @@
     import PoliticasEstancia from '$lib/components/PoliticasEstancia.svelte';
     import Testimonios from '$lib/components/Testimonios.svelte';
     import Formulario from '$lib/components/Formulario.svelte';
+    import Unidades2 from '$lib/components/Unidades2.svelte';
+
+    let unidadSeleccionada = $state("");
 </script>
 
 <svelte:head>
 	<title>Cabañas Los 4 Elementos | Santa Rosa de Calamuchita</title>
 </svelte:head>
 
+<!-- <Unidades2 /> -->
 <Hero />
 <FiltroEtico />
-<Unidades />
+<Unidades bind:unidadSeleccionada/>
 <GuiaExplorador />
 <PoliticasEstancia />
 <Testimonios />
-<Formulario />
+<Formulario bind:unidadSeleccionada/>
