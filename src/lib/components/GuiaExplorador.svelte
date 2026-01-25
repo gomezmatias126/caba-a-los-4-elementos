@@ -20,9 +20,9 @@
         description: "Supermercados, panaderías y carnicerías a la vuelta de la esquina. Ideal si venís en micro o no querés tocar el auto."
       }
     ],
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.8297!2d-64.5394!3d-32.0656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDAzJzU2LjIiUyA2NMKwMzInMjEuOCJX!5e0!3m2!1ses!2sar!4v1234567890",
-    mapsUrl: "https://maps.google.com/?q=Santa+Rosa+de+Calamuchita+Villa+Santarelli",
-    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=2000"
+    mapEmbed: "https://www.google.com/maps/place/Caba%C3%B1as+Los+4+Elementos/@-32.0694183,-64.5381832,17z/data=!4m8!3m7!1s0x95d2bb442697cc15:0xe202d3474cdc256a!8m2!3d-32.0694183!4d-64.5381832!9m1!1b1!16s%2Fg%2F11f0160b7j?entry=ttu8",
+    mapsUrl: "https://maps.app.goo.gl/oTXC3oDSNeiBHevy5",
+    image: "fotos//general/centro.jpeg"
   };
 </script>
 

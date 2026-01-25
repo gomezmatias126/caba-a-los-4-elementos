@@ -2,15 +2,15 @@
   // 🎯 DATOS CONFIGURABLES
   const heroData = {
     brandName: "Cabañas Los 4 Elementos",
-    title: "Tu base de descanso en el corazón de Santa Rosa de Calamuchita",
-    subtitle: "Cabañas y departamentos a 50m del río y 250m del centro",
-    description: "Experimentá la paz de Villa Santarelli con la comodidad de tener todo a pie. Naturaleza y servicios en perfecta armonía.",
+    title: "Viví Santa Rosa desde su corazón natural", // Título más emocional y activo
+    subtitle: "A 50m del río y 250m del centro. Tu auto también descansa.", // Resalta el beneficio de la ubicación
+    description: "Cambiá el encierro por la brisa serrana. Una base estratégica en Villa Santarelli para quienes buscan el silencio del río y la cercanía de todo, sin vueltas.", 
     backgroundImage: "/bg/hero.jpeg",
     buttons: {
-      primary: { text: "Ver Alojamientos", action: "#alojamientos" },
-      secondary: { text: "Consultar Ahora", action: "#contacto" }
+      primary: { text: "Explorar Unidades", action: "#alojamientos" }, // "Explorar" invita más a la curiosidad
+      secondary: { text: "Reservar mi lugar", action: "#contacto" } // CTA más directo a la conversión
     }
-  };
+};
 
   function scrollToSection(e, target) {
     e.preventDefault();
@@ -53,7 +53,7 @@
       </h1>
 
       <!-- Subtítulo -->
-      <h3 class="text-secondary">
+      <h3 class="text-secondary drop-shadow-md">
         {heroData.subtitle}
       </h3>
 

@@ -14,68 +14,50 @@
   const unidades = [
     {
       id: 1,
-      nombre: 'Cabaña Familiar Premium',
+      nombre: 'Cabaña Familiar El Tilo',
       capacidad: 'Hasta 5 personas',
       foto: '/fotos/familiar/1.jpeg',
       tipo: 'Familiar',
       galeria: [
-        '/fotos/familiar/1.jpeg',
-        '/fotos/familiar/2.jpeg',
-        '/fotos/familiar/3.jpeg',
-        '/fotos/familiar/4.jpeg',
-        '/fotos/familiar/5.jpeg',
-        '/fotos/familiar/6.jpeg',
-        '/fotos/familiar/7.jpeg',
-        '/fotos/familiar/8.jpeg',
-        '/fotos/familiar/9.jpeg',
-        '/fotos/familiar/10.jpeg',
-        '/fotos/familiar/11.jpeg',
-        '/fotos/familiar/12.jpeg',
-        '/fotos/familiar/13.jpeg',
-        '/fotos/familiar/14.jpeg',
+        '/fotos/familiar/1.jpeg', '/fotos/familiar/2.jpeg', '/fotos/familiar/3.jpeg', '/fotos/familiar/4.jpeg',
+        '/fotos/familiar/5.jpeg', '/fotos/familiar/6.jpeg', '/fotos/familiar/7.jpeg', '/fotos/familiar/8.jpeg',
+        '/fotos/familiar/9.jpeg', '/fotos/familiar/10.jpeg', '/fotos/familiar/11.jpeg', '/fotos/familiar/12.jpeg',
+        '/fotos/familiar/13.jpeg', '/fotos/familiar/14.jpeg',
       ],
-      descripcion: 'Ideal para familias que buscan sentirse como en casa, con espacio de sobra para los chicos y un asador listo para el asado del domingo.',
+      descripcion: 'Nuestra unidad más completa. Pensada para que cada integrante de la familia tenga su espacio de relax, con un asador techado ideal para compartir momentos únicos.',
       detalles: {
         capacidad: 'Hasta 5 personas',
-        distribucion: 'Dormitorios separados para privacidad de los padres',
+        distribucion: 'Dormitorios separados para máxima privacidad de los padres',
         equipamiento: [
-          'Heladera con freezer',
+          'Heladera con freezer grande',
           'Cocina con horno completo',
-          'Amplio asador individual',
-          'Sala comedor integrada',
+          'Amplio asador individual techado',
+          'Sala comedor integrada y espaciosa',
           'Baño completo con ducha'
         ]
       }
     },
     {
       id: 2,
-      nombre: 'Cabaña Familiar Confort',
+      nombre: 'Cabaña Familiar El Sauce',
       capacidad: 'Hasta 5 personas',
       foto: '/fotos/familiar2/1.jpeg',
       tipo: 'Familiar',
       galeria: [
-        '/fotos/familiar2/1.jpeg',
-        '/fotos/familiar2/2.jpeg',
-        '/fotos/familiar2/3.jpeg',
-        '/fotos/familiar2/4.jpeg',
-        '/fotos/familiar2/5.jpeg',
-        '/fotos/familiar2/6.jpeg',
-        '/fotos/familiar2/7.jpeg',
-        '/fotos/familiar2/8.jpeg',
-        '/fotos/familiar2/9.jpeg',
-        '/fotos/familiar2/10.jpeg',
-        '/fotos/familiar2/11.jpeg',
+        '/fotos/familiar2/1.jpeg', '/fotos/familiar2/2.jpeg', '/fotos/familiar2/3.jpeg', '/fotos/familiar2/4.jpeg',
+        '/fotos/familiar2/5.jpeg', '/fotos/familiar2/6.jpeg', '/fotos/familiar2/7.jpeg', '/fotos/familiar2/8.jpeg',
+        '/fotos/familiar2/9.jpeg', '/fotos/familiar2/10.jpeg', '/fotos/familiar2/11.jpeg',
       ],
-      descripcion: 'Ideal para familias que buscan sentirse como en casa, con espacio de sobra para los chicos y un asador listo para el asado del domingo.',
+      descripcion: 'Espacios luminosos y frescos. El refugio perfecto para desconectar del ruido y disfrutar de la cercanía del río con la seguridad y calidez de un hogar.',
       detalles: {
         capacidad: 'Hasta 5 personas',
-        distribucion: 'Dormitorios separados para privacidad de los padres',
+        distribucion: 'Habitaciones independientes para un descanso sin interrupciones',
         equipamiento: [
           'Heladera con freezer',
           'Cocina con horno completo',
-          'Amplio asador individual',
-          'Sala comedor integrada',
-          'Baño completo con ducha'
+          'Asador individual privado',
+          'Living comedor funcional',
+          'Baño completo sanitizado'
         ]
       }
     },
@@ -86,32 +68,21 @@
       foto: '/fotos/matrimonial/1.jpeg',
       tipo: 'Matrimonial',
       galeria: [
-        '/fotos/matrimonial/1.jpeg',
-        '/fotos/matrimonial/2.jpeg',
-        '/fotos/matrimonial/3.jpeg',
-        '/fotos/matrimonial/4.jpeg',
-        '/fotos/matrimonial/5.jpeg',
-        '/fotos/matrimonial/6.jpeg',
-        '/fotos/matrimonial/7.jpeg',
-        '/fotos/matrimonial/8.jpeg',
-        '/fotos/matrimonial/9.jpeg',
-        '/fotos/matrimonial/10.jpeg',
-        '/fotos/matrimonial/11.jpeg',
-        '/fotos/matrimonial/12.jpeg',
-        '/fotos/matrimonial/13.jpeg',
-        '/fotos/matrimonial/14.jpeg',
-        '/fotos/matrimonial/15.jpeg',
+        '/fotos/matrimonial/1.jpeg', '/fotos/matrimonial/2.jpeg', '/fotos/matrimonial/3.jpeg', '/fotos/matrimonial/4.jpeg',
+        '/fotos/matrimonial/5.jpeg', '/fotos/matrimonial/6.jpeg', '/fotos/matrimonial/7.jpeg', '/fotos/matrimonial/8.jpeg',
+        '/fotos/matrimonial/9.jpeg', '/fotos/matrimonial/10.jpeg', '/fotos/matrimonial/11.jpeg', '/fotos/matrimonial/12.jpeg',
+        '/fotos/matrimonial/13.jpeg', '/fotos/matrimonial/14.jpeg', '/fotos/matrimonial/15.jpeg',
       ],
-      descripcion: 'El refugio perfecto para parejas. Todo el confort necesario en un espacio íntimo y tranquilo a metros del río.',
+      descripcion: 'Diseñado para el silencio absoluto. Ideal para parejas que buscan una escapada de desconexión con la comodidad de estar a pasos de los mejores paseos.',
       detalles: {
         capacidad: '2 personas exclusivamente',
-        distribucion: 'Ambiente integrado optimizado para la comodidad de la pareja',
+        distribucion: 'Ambiente integrado optimizado para la intimidad',
         equipamiento: [
           'Heladera con freezer',
           'Vajilla completa para dos',
-          'Ubicación en zona silenciosa',
-          'Balcón con vista al río',
-          'Baño en suite'
+          'Ubicación en la zona más silenciosa',
+          'Balcón privado con vista al entorno',
+          'Baño en suite impecable'
         ]
       }
     },
@@ -122,67 +93,49 @@
       foto: '/fotos/matrimonial2/1.jpeg',
       tipo: 'Matrimonial',
       galeria: [
-        '/fotos/matrimonial2/1.jpeg',
-        '/fotos/matrimonial2/2.jpeg',
-        '/fotos/matrimonial2/3.jpeg',
-        '/fotos/matrimonial2/4.jpeg',
-        '/fotos/matrimonial2/5.jpeg',
-        '/fotos/matrimonial2/6.jpeg',
-        '/fotos/matrimonial2/7.jpeg',
-        '/fotos/matrimonial2/8.jpeg',
-        '/fotos/matrimonial2/9.jpeg',
-        '/fotos/matrimonial2/10.jpeg',
-        '/fotos/matrimonial2/11.jpeg',
-        '/fotos/matrimonial2/12.jpeg',
-        '/fotos/matrimonial2/13.jpeg',
-        '/fotos/matrimonial2/14.jpeg',
-        '/fotos/matrimonial2/15.jpeg',
+        '/fotos/matrimonial2/1.jpeg', '/fotos/matrimonial2/2.jpeg', '/fotos/matrimonial2/3.jpeg', '/fotos/matrimonial2/4.jpeg',
+        '/fotos/matrimonial2/5.jpeg', '/fotos/matrimonial2/6.jpeg', '/fotos/matrimonial2/7.jpeg', '/fotos/matrimonial2/8.jpeg',
+        '/fotos/matrimonial2/9.jpeg', '/fotos/matrimonial2/10.jpeg', '/fotos/matrimonial2/11.jpeg', '/fotos/matrimonial2/12.jpeg',
+        '/fotos/matrimonial2/13.jpeg', '/fotos/matrimonial2/14.jpeg', '/fotos/matrimonial2/15.jpeg',
       ],
-      descripcion: 'El refugio perfecto para parejas. Todo el confort necesario en un espacio íntimo y tranquilo a metros del río.',
+      descripcion: 'Luminosidad y confort en una ubicación privilegiada. Disfrutá de la brisa del río desde tu ventana en un entorno de paz absoluta.',
       detalles: {
         capacidad: '2 personas exclusivamente',
-        distribucion: 'Ambiente integrado optimizado para la comodidad de la pareja',
+        distribucion: 'Espacio abierto, moderno y muy luminoso',
         equipamiento: [
           'Heladera con freezer',
-          'Vajilla completa para dos',
-          'Ubicación en zona silenciosa',
-          'Balcón con vista al río',
-          'Baño en suite'
+          'Vajilla y utensilios completos',
+          'Cercanía inmediata al sector de río',
+          'Balcón con aire serrano',
+          'Baño privado con excelente presión'
         ]
       }
     },
     {
       id: 5,
-      nombre: 'Cabaña Tipo Habitación',
+      nombre: 'Estudio Funcional Serrano',
       capacidad: '2 personas',
       foto: '/fotos/habitacion/1.jpeg',
       tipo: 'Funcional',
       galeria: [
-        '/fotos/habitacion/1.jpeg',
-        '/fotos/habitacion/2.jpeg',
-        '/fotos/habitacion/3.jpeg',
-        '/fotos/habitacion/4.jpeg',
-        '/fotos/habitacion/5.jpeg',
-        '/fotos/habitacion/6.jpeg',
-        '/fotos/habitacion/7.jpeg',
-        '/fotos/habitacion/8.jpeg',
-        '/fotos/habitacion/9.jpeg',
-        '/fotos/habitacion/10.jpeg',
+        '/fotos/habitacion/1.jpeg', '/fotos/habitacion/2.jpeg', '/fotos/habitacion/3.jpeg', '/fotos/habitacion/4.jpeg',
+        '/fotos/habitacion/5.jpeg', '/fotos/habitacion/6.jpeg', '/fotos/habitacion/7.jpeg', '/fotos/habitacion/8.jpeg',
+        '/fotos/habitacion/9.jpeg', '/fotos/habitacion/10.jpeg',
       ],
-      descripcion: 'Nuestra opción más ágil. Pensada para quienes pasan el día recorriendo Santa Rosa y buscan una base cómoda, segura y económica para descansar.',
+      descripcion: 'Nuestra opción más inteligente para viajeros activos. Tenés tu propia cocina y asador privado pagando el precio de una habitación de hotel.',
       detalles: {
         capacidad: '2 personas',
-        distribucion: 'Monoambiente estilo habitación de hotel pero con cocina',
+        distribucion: 'Monoambiente tipo estudio, práctico y seguro',
         equipamiento: [
           'Heladera con congelador compacta',
-          'Cocina con horno',
+          'Anafe y horno para comidas rápidas',
           'Asador individual frente a la unidad',
-          'Cama matrimonial',
-          'Baño privado'
+          'Cama matrimonial confortable',
+          'Baño privado completo'
         ]
       }
     }
-  ];
+];
 
   const amenidades = [
     { icon: Wifi, label: 'WiFi Alta Velocidad' },
@@ -440,46 +393,46 @@
 
           <div class="space-y-5">
             <div>
-              <h4 class="text-2xl font-bold text-primary mb-2">
+              <h4 class="text-lg font-bold text-primary mb-2">
                 Capacidad
               </h4>
-              <p class="text-lg text-gray-700">{unidadActual.detalles.capacidad}</p>
+              <p class="text-base text-gray-700">{unidadActual.detalles.capacidad}</p>
             </div>
 
             <div>
-              <h4 class="text-2xl font-bold text-primary mb-2">
+              <h4 class="text-lg font-bold text-primary mb-2">
                 Distribución
               </h4>
-              <p class="text-lg text-gray-700">
+              <p class="text-base text-gray-700">
                 {unidadActual.detalles.distribucion}
               </p>
             </div>
 
             <div>
-              <h4 class="text-2xl font-bold text-primary mb-3">
+              <h4 class="text-lg font-bold text-primary mb-3">
                 Equipamiento
               </h4>
               <ul class="space-y-3">
                 {#each unidadActual.detalles.equipamiento as item (item)}
                   <li class="flex items-center gap-3">
                     <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                    <span class="text-lg text-gray-700">{item}</span>
+                    <span class="text-base text-gray-700">{item}</span>
                   </li>
                 {/each}
               </ul>
             </div>
           </div>
 
-          <div class="bg-gray-100 p-5 rounded-lg space-y-3">
-            <h4 class="font-bold text-base text-gray-800">Especificaciones técnicas</h4>
+          <div class="bg-secondary/20 p-5 rounded-lg space-y-3">
+            <h4 class="font-bold text-lg text-gray-800">Especificaciones técnicas</h4>
             <p class="text-base text-gray-700">
-              <strong>Climatización:</strong> Ventiladores de alta potencia (Sin aire)
+              <strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia (No requiere aire acondicionado)
             </p>
             <p class="text-base text-gray-700">
               <strong>Servicios:</strong> WiFi de alta velocidad, TV por cable
             </p>
             <p class="text-base text-gray-700">
-              <strong>Check-out:</strong> Recordá que recibimos la unidad limpia tal como se entrega
+              <strong>Check-out:</strong> Compromiso de entrega limpia (ayudamos a mantener la tarifa baja para vos)
             </p>
           </div>
 
@@ -498,7 +451,7 @@
               }`}
             >
               <ChevronLeft class="w-4 h-4" />
-              Anterior
+              Anterior Unidad
             </button>
             <button
               on:click={siguienteUnidad}
@@ -509,7 +462,7 @@
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
-              Siguiente
+              Siguiente Unidad
               <ChevronRight class="w-4 h-4" />
             </button>
           </div>

@@ -1,9 +1,9 @@
 <script>
   // 🎯 DATOS CONFIGURABLES
   const filterData = {
-    title: "Un refugio exclusivo para familias y parejas",
-    subtitle: "Priorizamos tu descanso y la armonía del barrio",
-    description: "No aceptamos grupos de jóvenes ni ruidos molestos. Ambiente 100% familiar y tranquilo.",
+    title: "Tu descanso es nuestra prioridad",
+    subtitle: "Un espacio diseñado para la armonía y el respeto",
+    description: "Para garantizar una estadía de paz, somos un complejo exclusivo para familias y parejas. No admitimos grupos de jóvenes ni ruidos molestos.",
     icons: [
       {
         name: "Silencio",
