@@ -2,7 +2,7 @@
   // 🎯 DATOS CONFIGURABLES
   const locationData = {
     title: "Todo a tu alcance, caminando",
-    subtitle: "Ubicación estratégica en el barrio Villa Santarelli",
+    subtitle: "Villa Santarelli, un lugar tranquilo a un paso del centro",
     points: [
       {
         title: "El Río y Puente Colgante",
