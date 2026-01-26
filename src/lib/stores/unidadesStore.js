@@ -29,7 +29,7 @@ export const unidades = writable([
             capacidad: 'Hasta 5 personas',
             distribucion: 'Un dormitorio con cama matrimonial y cama cucheta, y una segunda cama en el living',
             equipamiento: [
-                'Heladera con freezer grande',
+                'Heladera con freezer',
                 'Microondas',
                 'Vajilla completa para 5 personas',
                 'Cocina con horno completo',
@@ -67,7 +67,7 @@ export const unidades = writable([
             equipamiento: [
                 'Amplio asador individual techado',
                 'Sala comedor integrada y espaciosa',
-                'Heladera con freezer grande',
+                'Heladera con freezer',
                 'Vajilla completa para 5 personas',
                 'Cocina con horno completo',
                 'Microondas',

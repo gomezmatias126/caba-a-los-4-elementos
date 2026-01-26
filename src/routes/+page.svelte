@@ -7,7 +7,6 @@
     import Testimonios from '$lib/components/Testimonios.svelte';
     import Formulario from '$lib/components/Formulario.svelte';
     import Unidades2 from '$lib/components/Unidades2.svelte';
-
     let unidadSeleccionada = $state("");
 </script>
 

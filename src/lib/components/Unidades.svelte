@@ -50,7 +50,6 @@
 		{ icon: Scroll, label: 'Sábanas, toallas y toallones' },
 		{ icon: Refrigerator, label: 'Heladera' },
 		{ icon: Fan, label: 'Ventilador' },
-		{ icon: WashingMachine, label: 'Lavadora de uso comun' }
 	];
 
 	// --- LÓGICA DERIVADA (Runes) ---
@@ -397,7 +396,7 @@
 								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia 
 							</p>
 							<p class="text-base text-gray-700">
-								<strong>Servicios:</strong> WiFi de alta velocidad, TV por cable
+								<strong>Servicios:</strong> WiFi Internet y TV por cable
 							</p>
 							<p class="text-base text-gray-700">
 								<strong>Check-out:</strong> Compromiso de entrega limpia (ayudamos a mantener la tarifa
