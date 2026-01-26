@@ -2,9 +2,9 @@
   // 🎯 DATOS CONFIGURABLES
   const heroData = {
     brandName: "Cabañas Los 4 Elementos",
-    title: "Viví Santa Rosa desde su corazón natural", // Título más emocional y activo
+    title: "Tu refugio de paz en el corazón de Santa Rosa", // Título más emocional y activo
     subtitle: "A 50m del río y 250m del centro. Tu auto también descansa.", // Resalta el beneficio de la ubicación
-    description: "Respirá sierras, viví conectado. Disfrutá el silencio del río y la brisa serrana en una ubicación privilegiada a minutos del centro; el equilibrio exacto entre la calma que buscás y la cercanía que necesitás.", 
+    description: "Disfrutá de la calma de Villa Santarelli. Un entorno natural a solo 50 metros del río y a pasos del centro comercial. Sin ruidos, sin estrés, todo caminando.", 
     backgroundImage: "/bg/hero.jpeg",
     buttons: {
       primary: { text: "Explorar Unidades", action: "#unidades" }, // "Explorar" invita más a la curiosidad

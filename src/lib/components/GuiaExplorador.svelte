@@ -5,19 +5,19 @@
     subtitle: "Todo a tu alcance, caminando",
     points: [
       {
-        title: "El Río y Puente Colgante",
+        title: "El Río a tus pies",
         distance: "50m",
-        description: "El balneario más emblemático de Santa Rosa a solo unos pasos de tu puerta."
+        description: "Amanecé a metros del balneario más emblemático y el Puente Colgante. La naturaleza es tu patio"
       },
       {
-        title: "Centro Comercial",
+        title: "Conectividad Total",
         distance: "250m",
-        description: "Gastronomía, ferias y comercios cruzando el puente peatonal."
+        description: "Cruzando el puente peatonal accedés a lo mejor de la gastronomía y ferias de la zona. Todo a pie, sin usar el auto."
       },
       {
-        title: "Logística Fácil",
+        title: "Comodidad sin Auto",
         distance: "a la vuelta",
-        description: "Supermercados, panaderías y carnicerías a la vuelta de la esquina. Ideal si venís en micro o no querés tocar el auto."
+        description: "Supermercados y servicios a la vuelta de la esquina. La ubicación perfecta si buscás despreocuparte de la logística. Ideal si venís en micro o no querés tocar el auto."
       }
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3380.991749229103!2d-64.5432772!3d-32.0694719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2bb442697cc15%3A0x9e02d3474cdc256a!2sCaba%C3%B1as%20Los%204%20Elementos!5e0!3m2!1ses-419!2sar!4v1769357833374!5m2!1ses-419!2sar0",
