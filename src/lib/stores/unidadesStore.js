@@ -72,7 +72,7 @@ export const unidades = writable([
     },
     {
         id: 3,
-        nombre: 'Departamento Matrimonial Agua',
+        nombre: 'Apart Matrimonial Agua',
         capacidad: '2 personas',
         foto: '/fotos/matrimonial/1.jpeg',
         tipo: 'Matrimonial',
@@ -108,7 +108,7 @@ export const unidades = writable([
     },
     {
         id: 4,
-        nombre: 'Departamento Matrimonial Tierra',
+        nombre: 'Apart Matrimonial Tierra',
         capacidad: '2 personas',
         foto: '/fotos/matrimonial2/1.jpeg',
         tipo: 'Matrimonial',
@@ -142,7 +142,7 @@ export const unidades = writable([
     },
     {
         id: 5,
-        nombre: 'Eter',
+        nombre: 'Mini Apart Eter',
         capacidad: '2 personas',
         foto: '/fotos/habitacion/1.jpeg',
         tipo: 'Funcional',
