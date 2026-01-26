@@ -183,7 +183,7 @@
 		},
 		{
 			id: 5,
-			nombre: 'Estudio Funcional Eter',
+			nombre: 'Eter',
 			capacidad: '2 personas',
 			foto: '/fotos/habitacion/1.jpeg',
 			tipo: 'Funcional',
