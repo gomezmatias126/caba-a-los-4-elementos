@@ -62,7 +62,7 @@
 		title: '¿Consultar disponibilidad?',
 		subtitle: 'Completá los datos y Cristian te responderá por WhatsApp a la brevedad',
 		whatsappNumber: '5491140876426',
-		ownerImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200',
+		ownerImage: '/fotos/dueño.jpeg',
 		ownerText: 'Te respondo personalmente',
 		petOptions: ['No traigo mascota', 'Traigo mascota pequeña (sujeto a política)']
 	};
