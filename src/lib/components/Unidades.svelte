@@ -379,7 +379,7 @@
 
 		<div class="amenidades-block bg-background rounded-xl p-7 mb-12">
 			<h3 class="text-center text-xl font-semibold text-primary mb-6">Lo que todas incluyen</h3>
-			<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center items-center">
 				{#each amenidades as item (item.label)}
 					<div class="flex flex-col items-center">
 						<svelte:component this={item.icon} class="w-6 h-6 text-accent mb-2" />
