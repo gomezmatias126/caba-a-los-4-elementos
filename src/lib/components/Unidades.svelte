@@ -44,7 +44,7 @@
 	const unidades = [
 		{
 			id: 1,
-			nombre: 'Cabaña Familiar El Tilo',
+			nombre: 'Cabaña Familiar Aire',
 			capacidad: 'Hasta 5 personas',
 			foto: '/fotos/familiar/1.jpeg',
 			tipo: 'Familiar',
@@ -80,7 +80,7 @@
 		},
 		{
 			id: 2,
-			nombre: 'Cabaña Familiar El Sauce',
+			nombre: 'Cabaña Familiar Fuego',
 			capacidad: 'Hasta 5 personas',
 			foto: '/fotos/familiar2/1.jpeg',
 			tipo: 'Familiar',
@@ -113,7 +113,7 @@
 		},
 		{
 			id: 3,
-			nombre: 'Departamento Matrimonial Zen',
+			nombre: 'Departamento Matrimonial Agua',
 			capacidad: '2 personas',
 			foto: '/fotos/matrimonial/1.jpeg',
 			tipo: 'Matrimonial',
@@ -149,7 +149,7 @@
 		},
 		{
 			id: 4,
-			nombre: 'Departamento Matrimonial Vista',
+			nombre: 'Departamento Matrimonial Tierra',
 			capacidad: '2 personas',
 			foto: '/fotos/matrimonial2/1.jpeg',
 			tipo: 'Matrimonial',
@@ -183,7 +183,7 @@
 		},
 		{
 			id: 5,
-			nombre: 'Estudio Funcional Serrano',
+			nombre: 'Estudio Funcional Eter',
 			capacidad: '2 personas',
 			foto: '/fotos/habitacion/1.jpeg',
 			tipo: 'Funcional',
