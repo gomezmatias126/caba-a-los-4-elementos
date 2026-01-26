@@ -332,7 +332,7 @@ He leído y acepto las Políticas de Estancia.`;
 				class="fixed inset-0 h-screen w-screen top-0 left-0 z-50 flex items-center rounded-xl justify-center mt-!0 bg-black/50 backdrop-blur-sm"
 			>
 				<div
-					class="bg-white rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 shadow-2xl relative"
+					class="bg-white rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-2 shadow-2xl relative"
 				>
 					<button
 						onclick={toggleModal}
@@ -355,11 +355,11 @@ He leído y acepto las Políticas de Estancia.`;
 						</svg>
 					</button>
 
-					<h3 class="text-2xl font-bold text-emerald-800 mb-4">Políticas de Estancia</h3>
+					<h3 class="text-2xl font-bold text-center text-emerald-800 mb-4 mt-2">Políticas de Estancia</h3>
 
 					<div class="space-y-4 text-gray-700 text-sm leading-relaxed">
 						<div id="convivencia" class="relative w-full">
-							<div class="relative max-w-layout mx-auto px-4 md:px-8">
+							<div class="relative max-w-layout mx-auto px-2 md:px-4">
 								<!-- Título y Subtítulo -->
 								<div class="text-center mb-8">
 									<h3 class="text-3xl md:text-4xl font-semibold text-primary mb-2 font-montserrat">

@@ -27,13 +27,16 @@ export const unidades = writable([
             'Nuestra unidad más completa. Pensada para que cada integrante de la familia tenga su espacio de relax, con un asador techado ideal para compartir momentos únicos.',
         detalles: {
             capacidad: 'Hasta 5 personas',
-            distribucion: 'Dormitorios separados para máxima privacidad de los padres',
+            distribucion: 'Un dormitorio con cama matrimonial y cama cucheta, y una segunda cama en el living',
             equipamiento: [
                 'Heladera con freezer grande',
+                'Microondas',
+                'Vajilla completa para 5 personas',
                 'Cocina con horno completo',
                 'Amplio asador individual techado',
                 'Sala comedor integrada y espaciosa',
-                'Baño completo con ducha'
+                'Baño completo con ducha',
+                                'Cercanía inmediata al sector de río',
             ]
         }
     },
@@ -60,13 +63,16 @@ export const unidades = writable([
             'Espacios luminosos y frescos. El refugio perfecto para desconectar del ruido y disfrutar de la cercanía del río con la seguridad y calidez de un hogar.',
         detalles: {
             capacidad: 'Hasta 5 personas',
-            distribucion: 'Habitaciones independientes para un descanso sin interrupciones',
+            distribucion: 'Un dormitorio con cama matrimonial y cama cucheta, y una segunda cama en el living',
             equipamiento: [
-                'Heladera con freezer',
+                'Amplio asador individual techado',
+                'Sala comedor integrada y espaciosa',
+                'Heladera con freezer grande',
+                'Vajilla completa para 5 personas',
                 'Cocina con horno completo',
-                'Asador individual privado',
-                'Living comedor funcional',
-                'Baño completo sanitizado'
+                'Microondas',
+                'Baño completo con ducha',
+                'Cercanía inmediata al sector de río',
             ]
         }
     },
@@ -98,11 +104,15 @@ export const unidades = writable([
             capacidad: '2 personas exclusivamente',
             distribucion: 'Ambiente integrado optimizado para la intimidad',
             equipamiento: [
+                'Cama matrimonial confortable',
                 'Heladera con freezer',
                 'Vajilla completa para dos',
                 'Ubicación en la zona más silenciosa',
-                'Balcón privado con vista al entorno',
-                'Baño en suite impecable'
+                'Baño en suite impecable',
+                'Amplio asador individual techado',
+                'Cocina con horno completo',
+                'Microondas',
+                'Cercanía inmediata al sector de río',
             ]
         }
     },
@@ -132,11 +142,15 @@ export const unidades = writable([
             capacidad: '2 personas exclusivamente',
             distribucion: 'Espacio abierto, moderno y muy luminoso',
             equipamiento: [
+                'Cama matrimonial confortable',
                 'Heladera con freezer',
-                'Vajilla y utensilios completos',
+                'Vajilla y utensilios completos para dos',
                 'Cercanía inmediata al sector de río',
-                'Balcón con aire serrano',
-                'Baño privado con excelente presión'
+                'Ubicación en la zona más silenciosa',
+                'Baño en suite impecable',
+                'Amplio asador individual techado',
+                'Cocina con horno completo',
+                'Microondas',
             ]
         }
     },
@@ -168,7 +182,10 @@ export const unidades = writable([
                 'Anafe y horno para comidas rápidas',
                 'Asador individual frente a la unidad',
                 'Cama matrimonial confortable',
-                'Baño privado completo'
+                'Baño privado completo',
+                'Vajilla y utensilios completos para dos',
+                'Cercanía inmediata al sector de río',
+                'Ubicación en la zona más silenciosa',
             ]
         }
     }

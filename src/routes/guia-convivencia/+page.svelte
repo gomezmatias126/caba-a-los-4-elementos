@@ -1,5 +1,0 @@
-<script>
-  // 🎯 DATOS CONFIGURABLES
-  
-</script>
-
