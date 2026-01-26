@@ -178,7 +178,7 @@ export const unidades = writable([
             capacidad: '2 personas',
             distribucion: 'Monoambiente tipo estudio, práctico y seguro',
             equipamiento: [
-                'Heladera con congelador compacta',
+                'Mini Heladera',
                 'Anafe y horno para comidas rápidas',
                 'Asador individual frente a la unidad',
                 'Cama matrimonial confortable',
