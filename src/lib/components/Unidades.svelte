@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { animate, stagger } from 'motion';
 	import { X, Wifi, Tv, Car, Flame, Refrigerator, ChevronRight, ChevronLeft, Bed, WashingMachine } from 'lucide-svelte';
-
+	import { unidades } from '$lib/stores/unidadesStore';
 	let modalAbierto = $state(null);
 	let fotoActual = $state(0);
 	let sliderFullscreen = $state(false);
@@ -11,7 +11,6 @@
 	let modalRef = $state();
 	let touchStartX = 0; // No necesita ser $state si no se usa en el HTML
 	let { unidadSeleccionada = $bindable() } = $props();
-
 	// --- ESTADO (Runes) ---
 	let isDown = false;
 	let startX;
@@ -41,192 +40,20 @@
 		sliderRef.scrollLeft = scrollLeft - walk;
 	}
 
-	const unidades = [
-		{
-			id: 1,
-			nombre: 'Cabaña Familiar Aire',
-			capacidad: 'Hasta 5 personas',
-			foto: '/fotos/familiar/1.jpeg',
-			tipo: 'Familiar',
-			galeria: [
-				'/fotos/familiar/1.jpeg',
-				'/fotos/familiar/2.jpeg',
-				'/fotos/familiar/3.jpeg',
-				'/fotos/familiar/4.jpeg',
-				'/fotos/familiar/5.jpeg',
-				'/fotos/familiar/6.jpeg',
-				'/fotos/familiar/7.jpeg',
-				'/fotos/familiar/8.jpeg',
-				'/fotos/familiar/9.jpeg',
-				'/fotos/familiar/10.jpeg',
-				'/fotos/familiar/11.jpeg',
-				'/fotos/familiar/12.jpeg',
-				'/fotos/familiar/13.jpeg',
-				'/fotos/familiar/14.jpeg'
-			],
-			descripcion:
-				'Nuestra unidad más completa. Pensada para que cada integrante de la familia tenga su espacio de relax, con un asador techado ideal para compartir momentos únicos.',
-			detalles: {
-				capacidad: 'Hasta 5 personas',
-				distribucion: 'Dormitorios separados para máxima privacidad de los padres',
-				equipamiento: [
-					'Heladera con freezer grande',
-					'Cocina con horno completo',
-					'Amplio asador individual techado',
-					'Sala comedor integrada y espaciosa',
-					'Baño completo con ducha'
-				]
-			}
-		},
-		{
-			id: 2,
-			nombre: 'Cabaña Familiar Fuego',
-			capacidad: 'Hasta 5 personas',
-			foto: '/fotos/familiar2/1.jpeg',
-			tipo: 'Familiar',
-			galeria: [
-				'/fotos/familiar2/1.jpeg',
-				'/fotos/familiar2/2.jpeg',
-				'/fotos/familiar2/3.jpeg',
-				'/fotos/familiar2/4.jpeg',
-				'/fotos/familiar2/5.jpeg',
-				'/fotos/familiar2/6.jpeg',
-				'/fotos/familiar2/7.jpeg',
-				'/fotos/familiar2/8.jpeg',
-				'/fotos/familiar2/9.jpeg',
-				'/fotos/familiar2/10.jpeg',
-				'/fotos/familiar2/11.jpeg'
-			],
-			descripcion:
-				'Espacios luminosos y frescos. El refugio perfecto para desconectar del ruido y disfrutar de la cercanía del río con la seguridad y calidez de un hogar.',
-			detalles: {
-				capacidad: 'Hasta 5 personas',
-				distribucion: 'Habitaciones independientes para un descanso sin interrupciones',
-				equipamiento: [
-					'Heladera con freezer',
-					'Cocina con horno completo',
-					'Asador individual privado',
-					'Living comedor funcional',
-					'Baño completo sanitizado'
-				]
-			}
-		},
-		{
-			id: 3,
-			nombre: 'Departamento Matrimonial Agua',
-			capacidad: '2 personas',
-			foto: '/fotos/matrimonial/1.jpeg',
-			tipo: 'Matrimonial',
-			galeria: [
-				'/fotos/matrimonial/1.jpeg',
-				'/fotos/matrimonial/2.jpeg',
-				'/fotos/matrimonial/3.jpeg',
-				'/fotos/matrimonial/4.jpeg',
-				'/fotos/matrimonial/5.jpeg',
-				'/fotos/matrimonial/6.jpeg',
-				'/fotos/matrimonial/7.jpeg',
-				'/fotos/matrimonial/8.jpeg',
-				'/fotos/matrimonial/9.jpeg',
-				'/fotos/matrimonial/10.jpeg',
-				'/fotos/matrimonial/11.jpeg',
-				'/fotos/matrimonial/12.jpeg',
-				'/fotos/matrimonial/13.jpeg',
-				'/fotos/matrimonial/14.jpeg'
-			],
-			descripcion:
-				'Diseñado para el silencio absoluto. Ideal para parejas que buscan una escapada de desconexión con la comodidad de estar a pasos de los mejores paseos.',
-			detalles: {
-				capacidad: '2 personas exclusivamente',
-				distribucion: 'Ambiente integrado optimizado para la intimidad',
-				equipamiento: [
-					'Heladera con freezer',
-					'Vajilla completa para dos',
-					'Ubicación en la zona más silenciosa',
-					'Balcón privado con vista al entorno',
-					'Baño en suite impecable'
-				]
-			}
-		},
-		{
-			id: 4,
-			nombre: 'Departamento Matrimonial Tierra',
-			capacidad: '2 personas',
-			foto: '/fotos/matrimonial2/1.jpeg',
-			tipo: 'Matrimonial',
-			galeria: [
-				'/fotos/matrimonial2/1.jpeg',
-				'/fotos/matrimonial2/2.jpeg',
-				'/fotos/matrimonial2/3.jpeg',
-				'/fotos/matrimonial2/4.jpeg',
-				'/fotos/matrimonial2/5.jpeg',
-				'/fotos/matrimonial2/6.jpeg',
-				'/fotos/matrimonial2/7.jpeg',
-				'/fotos/matrimonial2/8.jpeg',
-				'/fotos/matrimonial2/9.jpeg',
-				'/fotos/matrimonial2/10.jpeg',
-				'/fotos/matrimonial2/11.jpeg',
-				'/fotos/matrimonial2/12.jpeg'
-			],
-			descripcion:
-				'Luminosidad y confort en una ubicación privilegiada. Disfrutá de la brisa del río desde tu ventana en un entorno de paz absoluta.',
-			detalles: {
-				capacidad: '2 personas exclusivamente',
-				distribucion: 'Espacio abierto, moderno y muy luminoso',
-				equipamiento: [
-					'Heladera con freezer',
-					'Vajilla y utensilios completos',
-					'Cercanía inmediata al sector de río',
-					'Balcón con aire serrano',
-					'Baño privado con excelente presión'
-				]
-			}
-		},
-		{
-			id: 5,
-			nombre: 'Eter',
-			capacidad: '2 personas',
-			foto: '/fotos/habitacion/1.jpeg',
-			tipo: 'Funcional',
-			galeria: [
-				'/fotos/habitacion/1.jpeg',
-				'/fotos/habitacion/2.jpeg',
-				'/fotos/habitacion/3.jpeg',
-				'/fotos/habitacion/4.jpeg',
-				'/fotos/habitacion/5.jpeg',
-				'/fotos/habitacion/6.jpeg',
-				'/fotos/habitacion/7.jpeg',
-				'/fotos/habitacion/8.jpeg',
-				'/fotos/habitacion/9.jpeg',
-				'/fotos/habitacion/10.jpeg'
-			],
-			descripcion:
-				'Nuestra opción más inteligente para viajeros activos. Tenés tu propia cocina y asador privado pagando el precio de una habitación de hotel.',
-			detalles: {
-				capacidad: '2 personas',
-				distribucion: 'Monoambiente tipo estudio, práctico y seguro',
-				equipamiento: [
-					'Heladera con congelador compacta',
-					'Anafe y horno para comidas rápidas',
-					'Asador individual frente a la unidad',
-					'Cama matrimonial confortable',
-					'Baño privado completo'
-				]
-			}
-		}
-	];
+	
 
 	const amenidades = [
 		{ icon: Wifi, label: 'Internet WiFi' },
 		{ icon: Tv, label: 'TV por Cable' },
 		{ icon: Car, label: 'Cochera' },
 		{ icon: Flame, label: 'Asador' },
-		{ icon: Bed, label: 'Ropa blanca' },
+		{ icon: Bed, label: 'Sábanas, toallas y toallones' },
 		{ icon: Refrigerator, label: 'Heladera' }
 	];
 
 	// --- LÓGICA DERIVADA (Runes) ---
-	let unidadActual = $derived(unidades.find((u) => u.id === modalAbierto));
-	let indiceActual = $derived(unidades.findIndex((u) => u.id === modalAbierto));
+	let unidadActual = $derived($unidades.find((u) => u.id === modalAbierto));
+	let indiceActual = $derived($unidades.findIndex((u) => u.id === modalAbierto));
 
 	// --- FUNCIONES ---
 	function abrirModal(id) {
@@ -251,8 +78,8 @@
     }
 
 	function siguienteUnidad() {
-		if (indiceActual < unidades.length - 1) {
-			modalAbierto = unidades[indiceActual + 1].id;
+		if (indiceActual < $unidades.length - 1) {
+			modalAbierto = $unidades[indiceActual + 1].id;
 			fotoActual = 0;
 			if (modalRef) modalRef.scrollTop = 0;
 		}
@@ -260,7 +87,7 @@
 
 	function unidadAnterior() {
 		if (indiceActual > 0) {
-			modalAbierto = unidades[indiceActual - 1].id;
+			modalAbierto = $unidades[indiceActual - 1].id;
 			fotoActual = 0;
 			if (modalRef) modalRef.scrollTop = 0;
 		}
@@ -383,14 +210,14 @@
 				{#each amenidades as item (item.label)}
 					<div class="flex flex-col items-center">
 						<svelte:component this={item.icon} class="w-6 h-6 text-accent mb-2" />
-						<p class="text-center font-medium font-montserrat text-sm text-gray-700">{item.label}</p>
+						<p class="text-center font-medium font-montserrat text-sm text-gray-700 text-balance">{item.label}</p>
 					</div>
 				{/each}
 			</div>
 		</div>
 
 		<div bind:this={cardsRef} class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-			{#each unidades as unidad (unidad.id)}
+			{#each $unidades as unidad (unidad.id)}
 				<div
 					class="card-unit aspect-[9/12] w-full h-auto min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
 				>
@@ -599,9 +426,9 @@
 								</button>
 								<button
 									onclick={siguienteUnidad}
-									disabled={indiceActual === unidades.length - 1}
+						disabled={indiceActual === $unidades.length - 1}
 									class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-colors text-base ${
-										indiceActual === unidades.length - 1
+										indiceActual === $unidades.length - 1
 											? 'bg-gray-200 text-gray-400 cursor-not-allowed'
 											: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 									}`}

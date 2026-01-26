@@ -1,8 +1,8 @@
 <script>
   // 🎯 DATOS CONFIGURABLES
   const locationData = {
-    title: "Todo a tu alcance, caminando",
-    subtitle: "Villa Santarelli, un lugar tranquilo a un paso del centro",
+    title: "Villa Santarelli, un lugar tranquilo a un paso del centro",
+    subtitle: "Todo a tu alcance, caminando",
     points: [
       {
         title: "El Río y Puente Colgante",
