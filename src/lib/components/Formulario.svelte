@@ -2,61 +2,62 @@
 	import { onMount } from 'svelte';
 	import { unidades } from '$lib/stores/unidadesStore';
 	const guideData = {
-    title: "Compromiso de Convivencia y Descanso",
-    subtitle: "Cabañas en Villa Santarelli, Santa Rosa de Calamuchita",
-    intro: "Para nosotros, tu descanso es lo más importante. Al elegirnos, te sumás a una propuesta de paz, respeto y cercanía con la naturaleza. Para garantizar una excelente estadía para todos, compartimos nuestras normas de convivencia:",
-    sections: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg>`,
-        title: "1. Filosofía del Lugar: Silencio y Respeto",
-        items: [
-          "Ambiente Familiar: Este complejo está destinado exclusivamente a familias y parejas. No se permiten grupos de jóvenes ni eventos/festejos.",
-          "Contaminación Sonora: No se permite música a volumen alto en áreas comunes ni ruidos molestos que perturben la paz del barrio, especialmente en horarios de siesta y descanso nocturno (de 22:00 a 08:00 hs)."
-        ]
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" /></svg>`,
-        title: "2. Política de Limpieza y Cuidado (Autogestión)",
-        items: [
-          "Entrega y Recepción: Entregamos la unidad desinfectada y en perfectas condiciones. Al no contar con servicio de mucama diario, el huésped se compromete a mantener la higiene y entregar la unidad limpia al finalizar su estadía.",
-          "Residuos: Solicitamos retirar la basura diariamente a los contenedores externos para evitar insectos y mantener la higiene del predio."
-        ]
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>`,
-        title: "3. Visitas y Seguridad",
-        items: [
-          "Uso Exclusivo: Por seguridad y para garantizar la tranquilidad de los huéspedes que pagaron por su estadía, no se admiten visitas externas en las cabañas ni en el predio. Solo pueden ingresar las personas registradas en la reserva.",
-          "Cocheras: Cada unidad tiene su espacio asignado. Por favor, respetar el lugar de los demás huéspedes."
-        ]
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" /></svg>`,
-        title: "4. Mascotas (Bajo Consulta Previa)",
-        items: [
-          "Condiciones: Solo se aceptan mascotas de tamaño pequeño.",
-          "Reglas: No pueden subir a camas o sillones, no pueden quedar solas en la cabaña en ningún momento y el dueño es responsable absoluto de la limpieza de sus necesidades."
-        ]
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
-        title: "5. Check-in y Check-out",
-        items: [
-          "Ingreso: A partir de las 16:00 hs. (Si la unidad está lista antes, Cristian te avisará vía WhatsApp).",
-          "Egreso: Hasta las 10:00 hs puntual, para permitir la desinfección total antes del próximo ingreso."
-        ]
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>`,
-        title: "6. Reservas y Cancelaciones",
-        items: [
-          "Seña: La reserva se concreta con el 50% del valor total. El saldo restante se abona al ingresar.",
-          "Cancelaciones: La seña no es reembolsable. Sin embargo, si avisás con un mínimo de 15 días de antelación, podés reprogramar tu fecha dentro del año calendario (sujeto a disponibilidad y tarifas vigentes)."
-        ]
-      }
-    ]
-  };
-	let { unidadSeleccionada = $bindable() } = $props();
+		title: 'Compromiso de Convivencia y Descanso',
+		subtitle: 'Cabañas en Villa Santarelli, Santa Rosa de Calamuchita',
+		intro:
+			'Para nosotros, tu descanso es lo más importante. Al elegirnos, te sumás a una propuesta de paz, respeto y cercanía con la naturaleza. Para garantizar una excelente estadía para todos, compartimos nuestras normas de convivencia:',
+		sections: [
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg>`,
+				title: '1. Filosofía del Lugar: Silencio y Respeto',
+				items: [
+					'Ambiente Familiar: Este complejo está destinado exclusivamente a familias y parejas. No se permiten grupos de jóvenes ni eventos/festejos.',
+					'Contaminación Sonora: No se permite música a volumen alto en áreas comunes ni ruidos molestos que perturben la paz del barrio, especialmente en horarios de siesta y descanso nocturno (de 22:00 a 08:00 hs).'
+				]
+			},
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" /></svg>`,
+				title: '2. Política de Limpieza y Cuidado (Autogestión)',
+				items: [
+					'Entrega y Recepción: Entregamos la unidad desinfectada y en perfectas condiciones. Al no contar con servicio de mucama diario, el huésped se compromete a mantener la higiene y entregar la unidad limpia al finalizar su estadía.',
+					'Residuos: Solicitamos retirar la basura diariamente a los contenedores externos para evitar insectos y mantener la higiene del predio.'
+				]
+			},
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>`,
+				title: '3. Visitas y Seguridad',
+				items: [
+					'Uso Exclusivo: Por seguridad y para garantizar la tranquilidad de los huéspedes que pagaron por su estadía, no se admiten visitas externas en las cabañas ni en el predio. Solo pueden ingresar las personas registradas en la reserva.',
+					'Cocheras: Cada unidad tiene su espacio asignado. Por favor, respetar el lugar de los demás huéspedes.'
+				]
+			},
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" /></svg>`,
+				title: '4. Mascotas (Bajo Consulta Previa)',
+				items: [
+					'Condiciones: Solo se aceptan mascotas de tamaño pequeño.',
+					'Reglas: No pueden subir a camas o sillones, no pueden quedar solas en la cabaña en ningún momento y el dueño es responsable absoluto de la limpieza de sus necesidades.'
+				]
+			},
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+				title: '5. Check-in y Check-out',
+				items: [
+					'Ingreso: A partir de las 16:00 hs. (Si la unidad está lista antes, Cristian te avisará vía WhatsApp).',
+					'Egreso: Hasta las 10:00 hs puntual, para permitir la desinfección total antes del próximo ingreso.'
+				]
+			},
+			{
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>`,
+				title: '6. Reservas y Cancelaciones',
+				items: [
+					'Seña: La reserva se concreta con el 50% del valor total. El saldo restante se abona al ingresar.',
+					'Cancelaciones: La seña no es reembolsable. Sin embargo, si avisás con un mínimo de 15 días de antelación, podés reprogramar tu fecha dentro del año calendario (sujeto a disponibilidad y tarifas vigentes).'
+				]
+			}
+		]
+	};
+	let { unidadSeleccionada = $bindable('') } = $props();
 	// 🎯 DATOS CONFIGURABLES (Constantes, no necesitan Runes)
 	const contactData = {
 		title: '¿Consultar disponibilidad?',
@@ -90,10 +91,12 @@
 	}
 	// --- LÓGICA ---
 	function generateWhatsAppMessage() {
+		const dateFromArg = formData.dateFrom.split('-').reverse().join('/');
+		const dateToArg = formData.dateTo.split('-').reverse().join('/');
 		const message = `¡Hola Cristian!
 Me llamo *${formData.name}* y vi la web. 
 Consulto por: ${unidadSeleccionada ? $unidades.find((u) => u.id === unidadSeleccionada).nombre : 'Indistinto'}
-Fechas: *del ${formData.dateFrom} al ${formData.dateTo}*
+Fechas: *del ${dateFromArg} al ${dateToArg}*
 Huéspedes: ${formData.adults} adultos y ${formData.children} niños
 Mascota: ${formData.pet}
 ---
@@ -104,13 +107,13 @@ He leído y acepto las Políticas de Estancia.`;
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		formData.unit = unidadSeleccionada;
 		if (!formData.acceptPolicies) {
 			alert('Debes aceptar las Políticas de Estancia para continuar.');
 			return;
 		}
 
-		if (!formData.name || !formData.unit || !formData.dateFrom || !formData.dateTo) {
+		if (!formData.name || !unidadSeleccionada || !formData.dateFrom || !formData.dateTo) {
 			alert('Por favor completá todos los campos requeridos.');
 			return;
 		}
@@ -213,6 +216,7 @@ He leído y acepto las Políticas de Estancia.`;
 					class="w-full px-4 py-3 rounded-2xl border-2 border-secondary/30 focus:border-accent focus:outline-none transition-all duration-300 font-opensans"
 				>
 					<option value="" disabled selected>Seleccioná una opción</option>
+
 					{#each $unidades as unidad}
 						<option value={unidad.id}>{unidad.nombre}</option>
 					{/each}
@@ -355,7 +359,9 @@ He leído y acepto las Políticas de Estancia.`;
 						</svg>
 					</button>
 
-					<h3 class="text-2xl font-bold text-center text-emerald-800 mb-4 mt-2">Políticas de Estancia</h3>
+					<h3 class="text-2xl font-bold text-center text-emerald-800 mb-4 mt-2">
+						Políticas de Estancia
+					</h3>
 
 					<div class="space-y-4 text-gray-700 text-sm leading-relaxed">
 						<div id="convivencia" class="relative w-full">
