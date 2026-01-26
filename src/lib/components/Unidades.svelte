@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { animate, stagger } from 'motion';
-	import { X, Wifi, Tv, Car, Flame, Refrigerator, ChevronRight, ChevronLeft } from 'lucide-svelte';
+	import { X, Wifi, Tv, Car, Flame, Refrigerator, ChevronRight, ChevronLeft, Bed, WashingMachine } from 'lucide-svelte';
 
 	let modalAbierto = $state(null);
 	let fotoActual = $state(0);
@@ -216,10 +216,11 @@
 	];
 
 	const amenidades = [
-		{ icon: Wifi, label: 'WiFi Alta Velocidad' },
+		{ icon: Wifi, label: 'Internet WiFi' },
 		{ icon: Tv, label: 'TV por Cable' },
 		{ icon: Car, label: 'Cochera' },
 		{ icon: Flame, label: 'Asador' },
+		{ icon: Bed, label: 'Ropa blanca' },
 		{ icon: Refrigerator, label: 'Heladera' }
 	];
 
@@ -564,8 +565,7 @@
 						<div class="bg-secondary/20 p-4 rounded-lg space-y-3">
 							<h4 class="font-bold text-lg text-gray-800">Especificaciones técnicas</h4>
 							<p class="text-base text-gray-700">
-								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia (No requiere
-								aire acondicionado)
+								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia 
 							</p>
 							<p class="text-base text-gray-700">
 								<strong>Servicios:</strong> WiFi de alta velocidad, TV por cable

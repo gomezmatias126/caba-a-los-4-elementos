@@ -160,6 +160,7 @@ He leído y acepto las Políticas de Estancia.`;
 						<option value={unit.id}>{unit.name}</option>
 					{/each}
 				</select>
+				<span class="text-sm text-slate-400">*Sujeto a disponibilidad</span>
 			</div>
 
 			<!-- Campos: Fechas -->

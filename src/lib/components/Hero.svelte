@@ -4,7 +4,7 @@
     brandName: "Cabañas Los 4 Elementos",
     title: "Viví Santa Rosa desde su corazón natural", // Título más emocional y activo
     subtitle: "A 50m del río y 250m del centro. Tu auto también descansa.", // Resalta el beneficio de la ubicación
-    description: "Cambiá el encierro por la brisa serrana. Una base estratégica en Villa Santarelli para quienes buscan el silencio del río y la cercanía de todo, sin vueltas.", 
+    description: "Cambiá el encierro por la brisa serrana. En Villa Santarelli tenes un lugar tranquilo a un paso del centro. para quienes buscan el silencio del río y la cercanía de todo, sin vueltas.", 
     backgroundImage: "/bg/hero.jpeg",
     buttons: {
       primary: { text: "Explorar Unidades", action: "#unidades" }, // "Explorar" invita más a la curiosidad
