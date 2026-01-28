@@ -1,4 +1,5 @@
 <script>
+    import { unidades } from '$lib/stores/unidadesStore.js';
 	import Hero from '$lib/components/Hero.svelte';
     import FiltroEtico from '$lib/components/FiltroEtico.svelte';
     import Unidades from '$lib/components/Unidades.svelte';
@@ -7,17 +8,17 @@
     import Testimonios from '$lib/components/Testimonios.svelte';
     import Formulario from '$lib/components/Formulario.svelte';
     let unidadSeleccionada = $state("");
+    let unidadesOficiales = $derived($unidades.filter(u => u.id === 1 || u.id === 2)); // Cambia el 1 por el ID real
 </script>
 
 <svelte:head>
 	<title>Cabañas Los 4 Elementos | Santa Rosa de Calamuchita</title>
 </svelte:head>
 
-<!-- <Unidades2 /> -->
 <Hero />
 <FiltroEtico />
-<Unidades bind:unidadSeleccionada/>
+<Unidades bind:unidadSeleccionada unidadesFiltradas={unidadesOficiales}/>
 <GuiaExplorador />
 <PoliticasEstancia />
 <Testimonios />
-<Formulario bind:unidadSeleccionada/>
+<Formulario bind:unidadSeleccionada unidadesFiltradas={unidadesOficiales}/>

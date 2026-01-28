@@ -3,6 +3,13 @@
 	import { animate, stagger } from 'motion';
 	import { X, Wifi, Scroll, Tv, Fan, Car, Flame, Refrigerator, ChevronRight, ChevronLeft, Bed, WashingMachine } from 'lucide-svelte';
 	import { unidades } from '$lib/stores/unidadesStore';
+    let { 
+    unidadSeleccionada = $bindable(''),
+    unidadesFiltradas = null // Nueva prop para recibir datos filtrados
+	} = $props();
+
+	let datosAMostrar = $derived(unidadesFiltradas ? unidadesFiltradas : $unidades);
+    // Desestructuramos las props y asignamos el valor del store como default
 	let modalAbierto = $state(null);
 	let fotoActual = $state(0);
 	let sliderFullscreen = $state(false);
@@ -10,7 +17,6 @@
 	let cardsRef = $state();
 	let modalRef = $state();
 	let touchStartX = 0; // No necesita ser $state si no se usa en el HTML
-	let { unidadSeleccionada = $bindable() } = $props();
 	// --- ESTADO (Runes) ---
 	let isDown = false;
 	let startX;
@@ -53,8 +59,8 @@
 	];
 
 	// --- LÓGICA DERIVADA (Runes) ---
-	let unidadActual = $derived($unidades.find((u) => u.id === modalAbierto));
-	let indiceActual = $derived($unidades.findIndex((u) => u.id === modalAbierto));
+	let unidadActual = $derived(datosAMostrar.find(u => u.id === modalAbierto));
+	let indiceActual = $derived(datosAMostrar.findIndex(u => u.id === modalAbierto));
 
 	// --- FUNCIONES ---
 	function abrirModal(id) {
@@ -79,8 +85,8 @@
     }
 
 	function siguienteUnidad() {
-		if (indiceActual < $unidades.length - 1) {
-			modalAbierto = $unidades[indiceActual + 1].id;
+		if (indiceActual < datosAMostrar.length - 1) {
+			modalAbierto = datosAMostrar[indiceActual + 1].id;
 			fotoActual = 0;
 			if (modalRef) modalRef.scrollTop = 0;
 		}
@@ -88,7 +94,7 @@
 
 	function unidadAnterior() {
 		if (indiceActual > 0) {
-			modalAbierto = $unidades[indiceActual - 1].id;
+			modalAbierto = datosAMostrar[indiceActual - 1].id;
 			fotoActual = 0;
 			if (modalRef) modalRef.scrollTop = 0;
 		}
@@ -218,7 +224,7 @@
 		</div>
 
 		<div bind:this={cardsRef} class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-			{#each $unidades as unidad (unidad.id)}
+			{#each datosAMostrar as unidad (unidad.id)}
 				<div
 					class="card-unit aspect-[9/12] w-full h-auto min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
 				>
@@ -427,9 +433,9 @@
 								</button>
 								<button
 									onclick={siguienteUnidad}
-						disabled={indiceActual === $unidades.length - 1}
+						disabled={indiceActual === datosAMostrar.length - 1}
 									class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-colors text-base ${
-										indiceActual === $unidades.length - 1
+										indiceActual === datosAMostrar.length - 1
 											? 'bg-gray-200 text-gray-400 cursor-not-allowed'
 											: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 									}`}

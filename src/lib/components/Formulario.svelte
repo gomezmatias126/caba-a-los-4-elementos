@@ -57,7 +57,11 @@
 			}
 		]
 	};
-	let { unidadSeleccionada = $bindable('') } = $props();
+	let { 
+    unidadSeleccionada = $bindable(''),
+    unidadesFiltradas = null // Nueva prop para recibir datos filtrados
+	} = $props();
+	let datosAMostrar = $derived(unidadesFiltradas ? unidadesFiltradas : $unidades);
 	// 🎯 DATOS CONFIGURABLES (Constantes, no necesitan Runes)
 	const contactData = {
 		title: '¿Consultar disponibilidad?',
@@ -95,7 +99,7 @@
 		const dateToArg = formData.dateTo.split('-').reverse().join('/');
 		const message = `¡Hola Cristian!
 Me llamo *${formData.name}* y vi la web. 
-Consulto por: ${unidadSeleccionada ? $unidades.find((u) => u.id === unidadSeleccionada).nombre : 'Indistinto'}
+Consulto por: ${unidadSeleccionada ? listaUnidades.find((u) => u.id === unidadSeleccionada).nombre : 'Indistinto'}
 Fechas: *del ${dateFromArg} al ${dateToArg}*
 Huéspedes: ${formData.adults} adultos y ${formData.children} niños
 Mascota: ${formData.pet}
@@ -217,7 +221,7 @@ He leído y acepto las Políticas de Estancia.`;
 				>
 					<option value="" disabled selected>Seleccioná una opción</option>
 
-					{#each $unidades as unidad}
+					{#each datosAMostrar as unidad}
 						<option value={unidad.id}>{unidad.nombre}</option>
 					{/each}
 					<option value="9">Indistinto</option>
