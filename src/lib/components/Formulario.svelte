@@ -431,8 +431,8 @@ He leído y acepto las Políticas de Estancia.`;
 		class="w-full flex flex-row justify-center sm:justify-end items-center mt-16 pb-2 px-4 opacity-30 hover:opacity-50 transition-opacity duration-300"
 	>
 		<a
-			class="text-sm text-background text-center"
-			href="https://gomezmatias.com.ar"
+			class="text-sm text-background text-center text-"
+			href="https://wa.me/5493517881327"
 			target="_blank"
 			rel="noopener noreferrer">Diseñado por Matias Gomez</a
 		>
