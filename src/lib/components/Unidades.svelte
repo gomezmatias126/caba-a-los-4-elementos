@@ -68,7 +68,7 @@
 		{ icon: Refrigerator, label: 'Heladera' },
 		{ icon: Fan, label: 'Ventilador' }
 	];
-
+	let cantidadUnidades = $derived(datosAMostrar.length);
 	// --- LÓGICA DERIVADA (Runes) ---
 	let unidadActual = $derived(datosAMostrar.find((u) => u.id === modalAbierto));
 	let indiceActual = $derived(datosAMostrar.findIndex((u) => u.id === modalAbierto));
@@ -219,7 +219,7 @@
 		<div class="header-section text-center mb-12">
 			<h2 class="text-5xl font-bold text-primary mb-3">Encontrá tu lugar ideal</h2>
 			<p class="text-xl text-gray-600">
-				5 opciones únicas diseñadas para el descanso y la comodidad
+				{cantidadUnidades} opciones únicas diseñadas para el descanso y la comodidad
 			</p>
 		</div>
 
@@ -237,7 +237,10 @@
 			</div>
 		</div>
 
-		<div bind:this={cardsRef} class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div
+			bind:this={cardsRef}
+			class="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-4"
+		>
 			{#each datosAMostrar as unidad (unidad.id)}
 				<div
 					class="card-unit aspect-[9/12] w-full h-auto min-h-80 rounded-2xl relative bg-white border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
