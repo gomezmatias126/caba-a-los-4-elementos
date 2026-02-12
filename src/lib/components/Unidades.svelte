@@ -467,7 +467,7 @@
 
 	{#if sliderFullscreen && unidadActual}
 		<div
-			class="fixed h-svh max-h-svh w-screen touch-none inset-0 bg-black z-[100] flex items-center justify-center overflow-y-hidden"
+			class="fixed h-screen max-h-screen w-screen touch-none inset-0 bg-black z-[100] flex items-center justify-center overflow-y-hidden"
 		>
 			<button
 				ontouchstart={handleTouchStart}
@@ -519,7 +519,7 @@
 					e.stopPropagation(); // Evita que el evento pase al div de abajo
 					toggleSliderFullscreen();
 				}}
-				class="p-4 absolute bottom-4 top: right-4 text-white md:hover:text-gray-300 z-[100] rounded-full shadow-lg touch-manipulation cursor-pointer"
+				class="p-6 absolute md:top-4 md:bottom-auto top-auto bottom-8 right-4 text-white md:hover:text-gray-300 z-[100] rounded-full shadow-lg touch-manipulation cursor-pointer"
 			>
 				<X class="w-10 h-10" />
 			</button>
