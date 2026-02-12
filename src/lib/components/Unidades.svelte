@@ -1,15 +1,28 @@
 <script>
 	import { onMount } from 'svelte';
 	import { animate, stagger } from 'motion';
-	import { X, Wifi, Scroll, Tv, Fan, Car, Flame, Refrigerator, ChevronRight, ChevronLeft, Bed, WashingMachine } from 'lucide-svelte';
+	import {
+		X,
+		Wifi,
+		Scroll,
+		Tv,
+		Fan,
+		Car,
+		Flame,
+		Refrigerator,
+		ChevronRight,
+		ChevronLeft,
+		Bed,
+		WashingMachine
+	} from 'lucide-svelte';
 	import { unidades } from '$lib/stores/unidadesStore';
-    let { 
-    unidadSeleccionada = $bindable(''),
-    unidadesFiltradas = null // Nueva prop para recibir datos filtrados
+	let {
+		unidadSeleccionada = $bindable(''),
+		unidadesFiltradas = null // Nueva prop para recibir datos filtrados
 	} = $props();
 
 	let datosAMostrar = $derived(unidadesFiltradas ? unidadesFiltradas : $unidades);
-    // Desestructuramos las props y asignamos el valor del store como default
+	// Desestructuramos las props y asignamos el valor del store como default
 	let modalAbierto = $state(null);
 	let fotoActual = $state(0);
 	let sliderFullscreen = $state(false);
@@ -46,8 +59,6 @@
 		sliderRef.scrollLeft = scrollLeft - walk;
 	}
 
-	
-
 	const amenidades = [
 		{ icon: Wifi, label: 'Internet WiFi' },
 		{ icon: Tv, label: 'TV por Cable' },
@@ -55,34 +66,34 @@
 		{ icon: Flame, label: 'Asador' },
 		{ icon: Scroll, label: 'Sábanas, toallas y toallones' },
 		{ icon: Refrigerator, label: 'Heladera' },
-		{ icon: Fan, label: 'Ventilador' },
+		{ icon: Fan, label: 'Ventilador' }
 	];
 
 	// --- LÓGICA DERIVADA (Runes) ---
-	let unidadActual = $derived(datosAMostrar.find(u => u.id === modalAbierto));
-	let indiceActual = $derived(datosAMostrar.findIndex(u => u.id === modalAbierto));
+	let unidadActual = $derived(datosAMostrar.find((u) => u.id === modalAbierto));
+	let indiceActual = $derived(datosAMostrar.findIndex((u) => u.id === modalAbierto));
 
 	// --- FUNCIONES ---
 	function abrirModal(id) {
-        modalAbierto = id;
-        fotoActual = 0;
-        document.body.style.overflow = 'hidden';
-        
-        // Empujamos un estado al historial para interceptar el botón "Atrás"
-        history.pushState({ modalOpen: true }, '');
-    }
+		modalAbierto = id;
+		fotoActual = 0;
+		document.body.style.overflow = 'hidden';
 
-    function cerrarModal() {
-        if (!modalAbierto) return; // Evita bucles si ya está cerrado
-        modalAbierto = null;
-        document.body.style.overflow = 'auto';
-        
-        // Si el usuario cerró el modal manualmente (X o click fuera),
-        // quitamos el estado del historial para que el "Atrás" no lo saque de la web después
-        if (history.state?.modalOpen) {
-            history.back();
-        }
-    }
+		// Empujamos un estado al historial para interceptar el botón "Atrás"
+		history.pushState({ modalOpen: true }, '');
+	}
+
+	function cerrarModal() {
+		if (!modalAbierto) return; // Evita bucles si ya está cerrado
+		modalAbierto = null;
+		document.body.style.overflow = 'auto';
+
+		// Si el usuario cerró el modal manualmente (X o click fuera),
+		// quitamos el estado del historial para que el "Atrás" no lo saque de la web después
+		if (history.state?.modalOpen) {
+			history.back();
+		}
+	}
 
 	function siguienteUnidad() {
 		if (indiceActual < datosAMostrar.length - 1) {
@@ -111,23 +122,24 @@
 	}
 
 	function toggleSliderFullscreen() {
-        sliderFullscreen = !sliderFullscreen;
-        
-        if (sliderFullscreen) {
-            history.pushState({ fullscreen: true }, '');
-            // BLOQUEA el scroll cuando entra a pantalla completa
-            document.body.style.overflow = 'hidden';
+		if (sliderFullscreen) {
+			// SI YA ESTÁ ABIERTO:
+			// Solo volvemos atrás en el historial.
+			// Esto disparará 'handlePopState', que se encargará de poner
+			// sliderFullscreen = false y manejar los estilos.
+			history.back();
+		} else {
+			// SI ESTÁ CERRADO:
+			// Lo abrimos manualmente y guardamos el estado.
+			sliderFullscreen = true;
+			history.pushState({ fullscreen: true }, '');
+
+			// BLOQUEA el scroll cuando entra a pantalla completa
+			document.body.style.overflow = 'hidden';
 			// Bloquea el pull-to-refresh y el rebote
 			document.body.style.overscrollBehavior = 'none';
-        } else {
-            if (history.state?.fullscreen) history.back();
-            // REVIERTE el bloqueo al salir. 
-            // Si el modal sigue abierto, lo mantenemos en 'hidden'
-            document.body.style.overflow = modalAbierto ? 'hidden' : 'auto';
-			// Restauramos el comportamiento normal
-			document.body.style.overscrollBehavior = 'auto';
-        }
-    }
+		}
+	}
 
 	function handleTouchStart(e) {
 		touchStartX = e.touches[0].clientX;
@@ -164,17 +176,17 @@
 	onMount(() => {
 		// --- Manejo del botón Atrás ---
 		const handlePopState = (event) => {
-        if (sliderFullscreen) {
-            sliderFullscreen = false;
-            // Si el modal sigue atrás, mantenemos el scroll bloqueado
-            document.body.style.overflow = modalAbierto ? 'hidden' : 'auto';
-			document.body.style.overscrollBehavior = 'auto'; // Limpiar aquí
-        } else if (modalAbierto) {
-            modalAbierto = null;
-            document.body.style.overflow = 'auto'; // Liberamos el scroll total
-			document.body.style.overscrollBehavior = 'auto'; // Y aquí
-        }
-    };
+			if (sliderFullscreen) {
+				sliderFullscreen = false;
+				// Si el modal sigue atrás, mantenemos el scroll bloqueado
+				document.body.style.overflow = modalAbierto ? 'hidden' : 'auto';
+				document.body.style.overscrollBehavior = 'auto'; // Limpiar aquí
+			} else if (modalAbierto) {
+				modalAbierto = null;
+				document.body.style.overflow = 'auto'; // Liberamos el scroll total
+				document.body.style.overscrollBehavior = 'auto'; // Y aquí
+			}
+		};
 
 		window.addEventListener('popstate', handlePopState);
 
@@ -217,7 +229,9 @@
 				{#each amenidades as item (item.label)}
 					<div class="flex flex-col items-center">
 						<item.icon class="w-6 h-6 text-accent mb-2" />
-						<p class="text-center font-medium font-montserrat text-sm text-gray-700 text-balance">{item.label}</p>
+						<p class="text-center font-medium font-montserrat text-sm text-gray-700 text-balance">
+							{item.label}
+						</p>
 					</div>
 				{/each}
 			</div>
@@ -399,7 +413,7 @@
 						<div class="bg-secondary/20 p-4 rounded-lg space-y-3">
 							<h4 class="font-bold text-lg text-gray-800">Especificaciones técnicas</h4>
 							<p class="text-base text-gray-700">
-								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia 
+								<strong>Climatización:</strong> Frescura natural y ventiladores de alta potencia
 							</p>
 							<p class="text-base text-gray-700">
 								<strong>Servicios:</strong> WiFi Internet y TV por cable
@@ -433,7 +447,7 @@
 								</button>
 								<button
 									onclick={siguienteUnidad}
-						disabled={indiceActual === datosAMostrar.length - 1}
+									disabled={indiceActual === datosAMostrar.length - 1}
 									class={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-colors text-base ${
 										indiceActual === datosAMostrar.length - 1
 											? 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -452,13 +466,9 @@
 	{/if}
 
 	{#if sliderFullscreen && unidadActual}
-		<div class="fixed h-screen w-screen touch-none inset-0 bg-black z-[100] flex items-center justify-center overflow-y-hidden">
-			<button
-				onclick={toggleSliderFullscreen}
-				class="absolute top-4 right-4 text-white hover:text-gray-300 z-[101]"
-			>
-				<X class="w-10 h-10" />
-			</button>
+		<div
+			class="fixed h-svh max-h-svh w-screen touch-none inset-0 bg-black z-[100] flex items-center justify-center overflow-y-hidden"
+		>
 			<button
 				ontouchstart={handleTouchStart}
 				ontouchend={handleTouchEnd}
@@ -502,6 +512,17 @@
 					{fotoActual + 1} / {unidadActual.galeria.length}
 				</div>
 			</div>
+			<button
+				type="button"
+				onpointerup={(e) => {
+					e.preventDefault(); // Evita comportamientos extraños del navegador
+					e.stopPropagation(); // Evita que el evento pase al div de abajo
+					toggleSliderFullscreen();
+				}}
+				class="p-4 absolute bottom-4 top: right-4 text-white md:hover:text-gray-300 z-[100] rounded-full shadow-lg touch-manipulation cursor-pointer"
+			>
+				<X class="w-10 h-10" />
+			</button>
 		</div>
 	{/if}
 </section>
